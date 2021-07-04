@@ -32,7 +32,34 @@ function userServerSideValidation (self, error) {
   }
 }
 
+function changeDetails (self, user) {
+  self.$validator.validateAll().then((result) => {
+    if (result) {
+      self.isLoading = true
+      self.$store.dispatch('changeDetailsAction', {
+        name: user.name,
+        password: self.user.password,
+        password_confirmation: self.user.password_confirmation
+      }).then(response => {
+        self.isLoading = false
+        self.user.password = ''
+        self.user.password_confirmation = ''
+        self.message = response.data.message
+        let message = document.querySelector('.message')
+        message.style.display = 'inline-block'
+        setTimeout(function () {
+          message.style.display = 'none'
+        }, 2000)
+      }).catch(error => {
+        self.isLoading = false
+        userServerSideValidation(self, error)
+      })
+    }
+  })
+}
+
 export {
   userValidation,
-  userServerSideValidation
+  userServerSideValidation,
+  changeDetails
 }

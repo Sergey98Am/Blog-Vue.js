@@ -36,7 +36,7 @@
             <button type="submit" class="submit-login" @click="loginRequest">Login</button>
           </div>
           <div v-if="isLoading" class="loader">
-            <div class="spinner-border text-secondary" role="status">
+            <div class="spinner-border text-light" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>

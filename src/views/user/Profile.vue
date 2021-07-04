@@ -59,13 +59,13 @@
                     </div>
                   </div>
                 </div>
-                <button>Update Profile</button>
+                <button @click="changeUserDetails(userDetails)">Update Profile</button>
                 <span class="message"><font-awesome-icon :icon="['fas', 'check']"/> {{ message }}</span>
               </div>
             </div>
           </div>
          <div v-if="isLoading" class="loader">
-           <div class="spinner-border text-secondary" role="status">
+           <div class="spinner-border text-light" role="status">
              <span class="sr-only">Loading...</span>
            </div>
          </div>
@@ -97,6 +97,9 @@ export default {
   methods: {
     userValidation () {
       return userService.userValidation()
+    },
+    changeUserDetails (user) {
+      userService.changeDetails(this, user)
     }
   }
 }
@@ -110,21 +113,20 @@ export default {
 
 .profile {
   overflow: auto;
-  height: calc(100% - 55px);
   padding: 50px 0;
   margin-top: 55px;
 }
 
 .card {
   overflow: hidden;
-  border-radius: 10px;
-  background: #405471;
-  color: #060240;
+  padding: 20px;
+  border-radius: 5px;
+  background: #ffffff;
 }
 
 .card-header {
-  background: #ffffff;
-  color: #10294e;
+  background: #393939;
+  color: #ffffff;
 }
 
 .card-header h2 {
@@ -132,32 +134,33 @@ export default {
 }
 
 label {
-  color: #08162d;
+  color: #000000;
 }
 
 input {
   border: none;
-  border-bottom: 3px solid #ffffff;
+  border-bottom: 3px solid #000000;
   background: none;
-  color: #ffffff;
+  color: #000000;
 }
 
 input:focus {
-  color: #ffffff;
+  color: #000000;
 }
 input:read-only {
-  background-color: #10294e;
+  background-color: gray;
 }
 
 .personal-information button {
   border: none;
   border-radius: 5px;
   padding: 10px;
-  background: #ffffff;
-  color: #10294e;
+  background: #000000;
+  color: #ffffff;
 }
 
 .message {
   display: none;
+  color: #000000;
 }
 </style>
