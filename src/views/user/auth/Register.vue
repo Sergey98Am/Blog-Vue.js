@@ -137,7 +137,7 @@ input {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background: #08162d;
+  background: #000000;
   color: #ffffff;
 }
 

@@ -4,6 +4,7 @@ import store from '../store/user'
 import User from '@/layouts/User.vue'
 import Home from '@/views/Home'
 import Register from '@/views/user/auth/Register.vue'
+import Login from '@/views/user/auth/Login.vue'
 import Profile from '@/views/user/Profile.vue'
 import Admin from '@/layouts/Admin.vue'
 import AdminHome from '@/views/admin/AdminHome.vue'
@@ -27,6 +28,14 @@ const router = new Router({
           path: 'register',
           name: 'Register',
           component: Register,
+          meta: {
+            guest: true
+          }
+        },
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login,
           meta: {
             guest: true
           }
