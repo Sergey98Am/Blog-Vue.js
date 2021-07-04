@@ -26,6 +26,5 @@ input.form-control:focus, textarea.form-control:focus  {
   -moz-osx-font-smoothing: grayscale;
   color: #E0DEDE;
   position: relative;
-  height: 100%;
 }
 </style>

@@ -3,7 +3,7 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import VeeValidate from 'vee-validate'
-// import store from './store/user'
+import store from './store/user'
 import Paginate from 'vuejs-paginate'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
@@ -32,6 +32,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  // store,
+  store,
   render: h => h(App)
 })
