@@ -6,7 +6,7 @@
           <div class="card personal-information">
             <div class="card-header"><h2>My Profile</h2></div>
             <div class="card-body">
-              <div class="form">
+              <div v-if="userDetails" class="form">
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="name">Name</label>
@@ -59,7 +59,7 @@
                     </div>
                   </div>
                 </div>
-                <button @click="changeUserDetails(userDetails)">Update Profile</button>
+                <button>Update Profile</button>
                 <span class="message"><font-awesome-icon :icon="['fas', 'check']"/> {{ message }}</span>
               </div>
             </div>
