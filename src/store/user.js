@@ -73,8 +73,24 @@ export default new Vuex.Store({
           reject(error)
         })
       })
+    },
+
+    changeDetailsAction ({commit}, payload) {
+      return new Promise((resolve, reject) => {
+        let formData = new FormData()
+        formData.append('name', payload.name)
+        formData.append('password', payload.password)
+        formData.append('password_confirmation', payload.password_confirmation)
+        authAxios.post('/change-details', formData).then(response => {
+          resolve(response)
+          commit('SET_user', response.data.user)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   },
+
   getters: {
     get_loggedIn (state) {
       return state.loggedIn
