@@ -4,6 +4,17 @@
   </div>
 </template>
 
+<script>
+import * as CheckToken from './services/checkToken'
+
+export default {
+  name: 'App',
+  mounted () {
+    CheckToken.checkToken(this)
+  }
+}
+</script>
+
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
 *, *:before, *:after {

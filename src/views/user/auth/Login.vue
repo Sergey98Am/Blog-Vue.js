@@ -57,7 +57,7 @@ export default {
       recaptchaError: '',
       email: '',
       password: '',
-      remember_me: false
+      remember_me: ''
     }
   },
   methods: {
