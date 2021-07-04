@@ -62,11 +62,6 @@
             <button type="submit" class="submit-register" @click="registerRequest">Register</button>
           </div>
           <div v-if="isLoading" class="loader">
-            <div class="spinner-border text-secondary" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
-          <div v-if="isLoading" class="loader">
             <div class="spinner-border text-light" role="status">
               <span class="sr-only">Loading...</span>
             </div>
@@ -89,7 +84,7 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
-        remember_me: ''
+        remember_me: false
       }
     }
   },
