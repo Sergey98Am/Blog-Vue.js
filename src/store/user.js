@@ -42,6 +42,24 @@ export default new Vuex.Store({
           reject(error)
         })
       })
+    },
+
+    loginAction ({commit}, payload) {
+      return new Promise((resolve, reject) => {
+        let formData = new FormData()
+        formData.append('email', payload.email)
+        formData.append('password', payload.password)
+        formData.append('remember_me', payload.remember_me)
+        axios.post('http://blog.loc/api/auth/login', formData).then(response => {
+          console.log(payload)
+          commit('SET_loggedIn', true)
+          commit('SET_token', 'Bearer ' + response.data.token)
+          commit('SET_user', response.data.user)
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   },
   getters: {

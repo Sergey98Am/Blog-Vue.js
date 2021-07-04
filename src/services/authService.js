@@ -62,8 +62,55 @@ function register (self) {
   })
 }
 
+function loginValidation () {
+  return {
+    email: {
+      required: true,
+      email: true
+    },
+    password: {
+      required: true
+    }
+  }
+}
+
+function loginServerSideValidation (login, error) {
+  const data = error.response.data
+  if (data.error) {
+    if (data.error.email) {
+      login.$validator.errors.add({field: 'email', msg: data.error[0]})
+    }
+    if (data.error.password) {
+      login.$validator.errors.add({field: 'password', msg: data.error.password[0]})
+    }
+  }
+  if (data.message) {
+    login.$validator.errors.add({field: 'password', msg: data.message})
+  }
+}
+
+function login (self) {
+  self.$validator.validateAll().then((result) => {
+    if (result) {
+      self.isLoading = true
+      self.$store.dispatch('loginAction', {
+        email: self.email,
+        password: self.password,
+        remember_me: self.remember_me
+      }).then(() => {
+        self.$router.push('/profile')
+      }).catch(error => {
+        loginServerSideValidation(self, error)
+      })
+    }
+  })
+}
+
 export {
   registerValidation,
   registerServerSideValidation,
-  register
+  register,
+  loginValidation,
+  loginServerSideValidation,
+  login
 }
