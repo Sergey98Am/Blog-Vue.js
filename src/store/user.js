@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import VuexPersistence from 'vuex-persist'
-// import authAxios from '../../config/authAxios'
+import authAxios from '../../config/authAxios'
 
 Vue.use(Vuex)
 
@@ -55,6 +55,19 @@ export default new Vuex.Store({
           commit('SET_loggedIn', true)
           commit('SET_token', 'Bearer ' + response.data.token)
           commit('SET_user', response.data.user)
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+
+    logoutAction ({commit}) {
+      return new Promise((resolve, reject) => {
+        authAxios.get('/logout').then(response => {
+          commit('SET_loggedIn', false)
+          commit('SET_token', null)
+          commit('SET_user', null)
           resolve(response)
         }).catch(error => {
           reject(error)

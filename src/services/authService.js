@@ -106,11 +106,22 @@ function login (self) {
   })
 }
 
+function logout (self) {
+  self.$store.dispatch('logoutAction').then(() => {
+    if (self.$route.path !== '/') {
+      self.$router.push('/')
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
 export {
   registerValidation,
   registerServerSideValidation,
   register,
   loginValidation,
   loginServerSideValidation,
-  login
+  login,
+  logout
 }

@@ -17,7 +17,7 @@
           <router-link tag="button" class="profile-button" to="/profile">Profile</router-link>
         </li>
         <li class="nav-item">
-          <button class="logout">Logout</button>
+          <button @click="LogoutRequest" class="logout">Logout</button>
         </li>
       </ul>
       <ul v-else class="nav navbar-nav navbar-right">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import * as authService from '../services/authService'
 
 export default {
   data () {
@@ -48,6 +49,9 @@ export default {
   methods: {
     toggle () {
       this.isToggled = !this.isToggled
+    },
+    LogoutRequest () {
+      authService.logout(this)
     }
   }
 }
