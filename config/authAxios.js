@@ -3,7 +3,7 @@ import store from '../src/store/user'
 
 const axiosInstance = axios.create()
 
-axiosInstance.defaults.baseURL = 'http://tasks.loc/api'
+axiosInstance.defaults.baseURL = 'http://blog.loc/api'
 
 axiosInstance.interceptors.request.use(
   (config) => {

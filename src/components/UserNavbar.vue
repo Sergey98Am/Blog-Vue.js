@@ -12,20 +12,20 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">
-          <router-link class="nav-link" to="/login">Login</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/register">Register</router-link>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul v-if="loggedIn" class="nav navbar-nav navbar-right">
         <li class="nav-item">
           <router-link tag="button" class="profile-button" to="/profile">Profile</router-link>
         </li>
         <li class="nav-item">
           <button class="logout">Logout</button>
+        </li>
+      </ul>
+      <ul v-else class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <router-link class="nav-link" to="/login">Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/register">Register</router-link>
         </li>
       </ul>
     </div>
@@ -38,6 +38,11 @@ export default {
   data () {
     return {
       isToggled: false
+    }
+  },
+  computed: {
+    loggedIn () {
+      return this.$store.getters.get_loggedIn
     }
   },
   methods: {
