@@ -10,7 +10,7 @@
           </div>
           <div v-else>
             <h1 class="title"><i><b>Users</b></i></h1>
-            <div class="create">
+            <div v-if="$can('user_create')" class="create">
               <button type="button" @click="newModal">
                 Create New User
               </button>
@@ -33,13 +33,13 @@
                   <td>{{ user.email_verified_at ? 'Yes' : 'No' }}</td>
                   <td>{{ user.role.title }}</td>
                   <td class="actions">
-                    <button type="button" class="edit" @click="editModal(user)">
+                    <button v-if="$can('user_edit')" type="button" class="edit" @click="editModal(user)">
                   <span class="icon">
                     <font-awesome-icon :icon="['fas', 'edit']"/>
                   </span>
                       Edit
                     </button>
-                    <button class="delete" @click="deleteUser($event.target, user.id)">
+                    <button v-if="$can('user_delete')" class="delete" @click="deleteUser($event.target, user.id)">
                       <div class="spinner-border text-light delete-loader" role="status">
                         <span class="sr-only">Loading...</span>
                       </div>

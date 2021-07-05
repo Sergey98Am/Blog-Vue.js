@@ -52,9 +52,11 @@ function register (self) {
         password: self.user.password,
         password_confirmation: self.user.password_confirmation,
         remember_me: self.user.remember_me
-      }).then(result => {
-        console.log(result)
-        self.$router.push('/profile')
+      }).then(response => {
+        if (response.data.user.role_id !== 1) {
+          return self.$router.push('/admin')
+        }
+        return self.$router.push('/')
       }).catch(error => {
         registerServerSideValidation(self, error)
       })
@@ -97,8 +99,11 @@ function login (self) {
         email: self.email,
         password: self.password,
         remember_me: self.remember_me
-      }).then(() => {
-        self.$router.push('/profile')
+      }).then(response => {
+        if (response.data.user.role_id !== 1) {
+          return self.$router.push('/admin')
+        }
+        return self.$router.push('/')
       }).catch(error => {
         loginServerSideValidation(self, error)
       })

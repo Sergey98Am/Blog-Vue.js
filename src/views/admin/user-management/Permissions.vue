@@ -10,7 +10,7 @@
           </div>
           <div v-else>
             <h1 class="title"><i><b>Permissions</b></i></h1>
-            <div class="create">
+            <div v-if="$can('permission_create')" class="create">
               <button type="button" @click="newModal">
                 Create New Permission
               </button>
@@ -27,11 +27,12 @@
                 <tr v-for="permission in displayedPermissions" :key="permission.id">
                   <td>{{ permission.title }}</td>
                   <td class="actions">
-                    <button type="button" class="edit" @click="editModal(permission)">
+                    <button v-if="$can('permission_edit')" type="button" class="edit" @click="editModal(permission)">
                       <font-awesome-icon :icon="['fas', 'edit']"/>
                       Edit
                     </button>
-                    <button class="delete" @click="deletePermission($event.target, permission.id)">
+                    <button v-if="$can('permission_delete')" class="delete"
+                            @click="deletePermission($event.target, permission.id)">
                       <div class="spinner-border text-light delete-loader" role="status">
                         <span class="sr-only">Loading...</span>
                       </div>
