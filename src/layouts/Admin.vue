@@ -139,37 +139,39 @@ label {
 }
 
 .multiselect__tags {
-  background: #ffffff;
+  background: #000000;
 }
 
 .multiselect__placeholder {
-  color: #10294e;
+  color: #ffffff;
 }
 
 .multiselect__content-wrapper {
-  background: #ffffff;
+  background: #000000;
+  color: #ffffff;
 }
 
 .multiselect__option--selected {
-  background: #10294e;
+  background: #000000;
   color: #ffffff;
 }
 
 .multiselect__option--highlight {
-  background: #405471;
+  background: #313030;
   color: #ffffff;
 }
 
 .multiselect__option--highlight::after {
-  background: #405471;
+  background: #313030;
 }
 
 .multiselect__tag {
-  background: #10294e;
+  background: #ffffff;
+  color: #000000;
 }
 
 .multiselect__tag-icon:hover {
-  background: #060240;
+  background: #000000;
 }
 
 .table {
