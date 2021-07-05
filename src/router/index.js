@@ -8,6 +8,7 @@ import Login from '@/views/user/auth/Login.vue'
 import Profile from '@/views/user/Profile.vue'
 import Admin from '@/layouts/Admin.vue'
 import AdminHome from '@/views/admin/AdminHome.vue'
+import Permissions from '@/views/admin/user-management/Permissions.vue'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ const router = new Router({
           path: '/',
           name: 'AdminHome',
           component: AdminHome
+        },
+        {
+          path: '/admin/permissions',
+          name: 'Permissions',
+          component: Permissions
         }
       ]
     }
