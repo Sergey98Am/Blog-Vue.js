@@ -1,6 +1,6 @@
 <template>
   <div class="admin">
-    <div class="a d-flex flex-column">
+    <div v-if="$can('view_admin_dashboard')" class="a d-flex flex-column">
       <v-menu></v-menu>
       <div class="main">
         <div class="container-fluid">
@@ -12,20 +12,45 @@
         </div>
       </div>
     </div>
-<!--    <div class="loading" v-else>-->
-<!--      <div class="spinner-grow text-primary" role="status">-->
-<!--        <span class="sr-only">Loading...</span>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="loading" v-else>
+      <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Menu from '../components/AdminMenu'
+import authAxios from '../../config/authAxios'
 
 export default {
   components: {
     'v-menu': Menu
+  },
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+  watch: {
+    $route: {
+      handler () {
+        this.isLoading = true
+        authAxios.get('/abilities').then(response => {
+          this.isLoading = false
+          let abilities = response.data.permissions
+          if (abilities.includes('view_admin_dashboard')) {
+            this.$ability.update([
+              {subject: 'all', action: response.data.permissions}
+            ])
+          } else {
+            this.$router.push('/')
+          }
+        })
+      },
+      immediate: true
+    }
   }
 }
 </script>

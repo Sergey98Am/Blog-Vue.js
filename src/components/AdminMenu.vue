@@ -12,7 +12,7 @@
           <router-link class="nav-link" to="/profile">Profile</router-link>
         </li>
         <li class="nav-item text-nowrap">
-          <a class="nav-link">Logout</a>
+          <a @click="LogoutRequest" class="nav-link">Logout</a>
         </li>
       </ul>
     </nav>
@@ -25,7 +25,7 @@
               Dashboard
             </router-link>
           </li>
-          <li class="nav-item sidebar-dropdown dropdown-show">
+          <li v-if="$can('user_management_access')" class="nav-item sidebar-dropdown dropdown-show">
             <a @click="toggleOn" class="nav-link">
               <span>
                 <font-awesome-icon :icon="['fas', 'users']"/>
@@ -34,16 +34,16 @@
               <font-awesome-icon :icon="['fas', 'chevron-down']"/>
             </a>
             <div class="sidebar-dropdown-menu" :class="{ 'toggled-on': toggleOnOff }">
-              <router-link @click.native="toggleDropdownItem" to="/admin/permissions"
+              <router-link v-if="$can('permission_access')" @click.native="toggleDropdownItem" to="/admin/permissions"
                            class="d-block">
                 <font-awesome-icon :icon="['fas', 'unlock-alt']"/>
                 Permissions
               </router-link>
-              <router-link to="/admin/roles" @click.native="toggleDropdownItem" class="d-block">
+              <router-link v-if="$can('role_access')" to="/admin/roles" @click.native="toggleDropdownItem" class="d-block">
                 <font-awesome-icon :icon="['fas', 'suitcase']"/>
                 Roles
               </router-link>
-              <router-link to="/admin/users" @click.native="toggleDropdownItem" class="d-block">
+              <router-link v-if="$can('user_access')" to="/admin/users" @click.native="toggleDropdownItem" class="d-block">
                 <font-awesome-icon :icon="['fas', 'user']"/>
                 Users
               </router-link>
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import * as authService from '../services/authService'
 
 export default {
   name: 'Menu',
@@ -75,6 +76,9 @@ export default {
     },
     toggleOn () {
       this.toggleOnOff = !this.toggleOnOff
+    },
+    LogoutRequest () {
+      authService.logout(this)
     }
   }
 }

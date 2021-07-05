@@ -10,7 +10,7 @@
           </div>
           <div v-else>
             <h1 class="title"><i><b>Roles</b></i></h1>
-            <div class="create">
+            <div v-if="$can('role_create')" class="create">
               <button type="button" @click="newModal">
                 Create New Role
               </button>
@@ -33,13 +33,13 @@
                 </span>
                   </td>
                   <td class="actions">
-                    <button type="button" class="edit" @click="editModal(role)">
+                    <button v-if="$can('role_edit')" type="button" class="edit" @click="editModal(role)">
                   <span class="icon">
                     <font-awesome-icon :icon="['fas', 'edit']"/>
                   </span>
                       Edit
                     </button>
-                    <button class="delete" @click="deleteRole($event.target, role.id)">
+                    <button v-if="$can('role_delete')" class="delete" @click="deleteRole($event.target, role.id)">
                       <div class="spinner-border text-light delete-loader" role="status">
                         <span class="sr-only">Loading...</span>
                       </div>
