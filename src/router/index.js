@@ -10,6 +10,7 @@ import Admin from '@/layouts/Admin.vue'
 import AdminHome from '@/views/admin/AdminHome.vue'
 import Permissions from '@/views/admin/user-management/Permissions.vue'
 import Roles from '@/views/admin/user-management/Roles.vue'
+import Users from '@/views/admin/user-management/Users.vue'
 
 Vue.use(Router)
 
@@ -74,6 +75,11 @@ const router = new Router({
           path: '/admin/roles',
           name: 'Roles',
           component: Roles
+        },
+        {
+          path: '/admin/users',
+          name: 'Users',
+          component: Users
         }
       ]
     }
