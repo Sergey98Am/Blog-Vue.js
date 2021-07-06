@@ -35,7 +35,6 @@ input.form-control:focus, textarea.form-control:focus  {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #E0DEDE;
   position: relative;
 }
 

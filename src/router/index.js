@@ -6,12 +6,12 @@ import Home from '@/views/Home'
 import Register from '@/views/user/auth/Register.vue'
 import Login from '@/views/user/auth/Login.vue'
 import Profile from '@/views/user/Profile.vue'
+import Posts from '@/views/user/Posts.vue'
 import Admin from '@/layouts/Admin.vue'
 import AdminHome from '@/views/admin/AdminHome.vue'
 import Permissions from '@/views/admin/user-management/Permissions.vue'
 import Roles from '@/views/admin/user-management/Roles.vue'
 import Users from '@/views/admin/user-management/Users.vue'
-
 Vue.use(Router)
 
 const router = new Router({
@@ -47,6 +47,14 @@ const router = new Router({
           path: 'profile',
           name: 'Profile',
           component: Profile,
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: 'posts',
+          name: 'Posts',
+          component: Posts,
           meta: {
             auth: true
           }
