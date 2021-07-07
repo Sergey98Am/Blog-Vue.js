@@ -87,7 +87,7 @@ function update (target, self) {
       }
       formData.append('title', self.title)
       formData.append('description', self.description)
-      authAxios.post('/posts/' + self.id, formData).then(response => {
+      authAxios.post('/admin/update-post/' + self.id, formData).then(response => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
@@ -137,11 +137,76 @@ function allPosts (self) {
   })
 }
 
+function adminAllPosts (self) {
+  self.isLoading = true
+  authAxios.get('/admin/posts').then(response => {
+    self.isLoading = false
+    self.posts = response.data.posts
+  }).catch(() => {
+    self.isLoading = false
+  })
+}
+
+function check (post) {
+  let checked = post.checked ? 1 : 0
+  let formData = new FormData()
+  formData.append('_method', 'PUT')
+  formData.append('id', post.id)
+  formData.append('checked', checked)
+  console.log(post.checked)
+  authAxios.post('/admin/check-post/' + post.id, formData).then(response => {
+    post.checked = response.data.post.checked
+  }).catch(error => error)
+}
+
+function adminUpdate (target, self) {
+  self.$validator.validateAll().then((result) => {
+    if (result) {
+      // Loader
+      let loader = target.querySelector('.edit-loader')
+      let icon = target.querySelector('.icon')
+      loader.style.display = 'inline-block'
+      icon.style.display = 'none'
+      // End Loader
+      let formData = new FormData()
+      formData.append('_method', 'PUT')
+      formData.append('id', self.id)
+      if (self.$refs['hidden-button'].files[0]) {
+        formData.append('image', self.image)
+      }
+      formData.append('title', self.title)
+      formData.append('description', self.description)
+      authAxios.post('/admin/posts/' + self.id, formData).then(response => {
+        // Loader
+        loader.style.display = 'none'
+        icon.style.display = 'inline-block'
+        // End Loader
+        self.closeModal()
+        let post = self.posts.find(post => post.id === response.data.updatedPost.id)
+        if (self.$refs['hidden-button'].files[0]) {
+          post.image = response.data.updatedPost.image
+        }
+        post.title = response.data.updatedPost.title
+        post.description = response.data.updatedPost.description
+      }).catch(error => {
+        // Loader
+        loader.style.display = 'none'
+        icon.style.display = 'inline-block'
+        // End Loader
+        serverSideValidation(self, error)
+      })
+    }
+  })
+}
+
 export {
   validation,
   get,
   create,
   update,
   destroy,
-  allPosts
+  allPosts,
+  adminAllPosts,
+  check,
+  adminUpdate
 }

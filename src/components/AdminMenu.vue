@@ -49,6 +49,12 @@
               </router-link>
             </div>
           </li>
+          <li class="nav-link">
+            <router-link v-if="$can('permission_access')" @click.native="toggleDropdownItem" to="/admin/posts"
+                         class="d-block">
+              Posts
+            </router-link>
+          </li>
         </ul>
       </div>
     </div>

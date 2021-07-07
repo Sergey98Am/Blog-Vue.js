@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ShowPosts from '@/components/Posts/ShowPosts.vue'
+import ShowPosts from '@/components/user/posts/ShowPosts.vue'
 import * as postService from '@/services/postService'
 import * as Pagination from '../../pagination'
 

@@ -3,13 +3,7 @@
     <div v-if="$can('view_admin_dashboard')" class="a d-flex flex-column">
       <v-menu></v-menu>
       <div class="main">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <router-view></router-view>
-            </div>
-          </div>
-        </div>
+        <router-view></router-view>
       </div>
     </div>
     <div class="loading" v-else>
@@ -94,7 +88,7 @@ export default {
 }
 
 .title {
-  color: #ffffff;
+  color: #000000;
 }
 
 .create {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/user'
-import User from '@/layouts/User.vue'
+import User from '@/layouts/user.vue'
 import Home from '@/views/Home'
 import Register from '@/views/user/auth/Register.vue'
 import Login from '@/views/user/auth/Login.vue'
@@ -13,6 +13,7 @@ import AdminHome from '@/views/admin/AdminHome.vue'
 import Permissions from '@/views/admin/user-management/Permissions.vue'
 import Roles from '@/views/admin/user-management/Roles.vue'
 import Users from '@/views/admin/user-management/Users.vue'
+import AdminPosts from '@/views/admin/AdminPosts.vue'
 
 Vue.use(Router)
 
@@ -64,10 +65,7 @@ const router = new Router({
         {
           path: 'all-posts',
           name: 'AllPosts',
-          component: AllPosts,
-          meta: {
-            auth: true
-          }
+          component: AllPosts
         }
       ]
     },
@@ -98,6 +96,11 @@ const router = new Router({
           path: '/admin/users',
           name: 'Users',
           component: Users
+        },
+        {
+          path: '/admin/posts',
+          name: 'AdminPosts',
+          component: AdminPosts
         }
       ]
     }
