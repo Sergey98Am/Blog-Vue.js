@@ -99,7 +99,7 @@ export default {
       description: '',
       // for image
       imagePreview: false,
-      noImage: require('../assets/images/no-image.jpg'),
+      noImage: require('../../assets/images/no-image.jpg'),
       postImage: ''
     }
   },

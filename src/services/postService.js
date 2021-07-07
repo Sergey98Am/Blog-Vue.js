@@ -127,10 +127,21 @@ function destroy (target, id, self) {
   })
 }
 
+function allPosts (self) {
+  self.isLoading = true
+  authAxios.get('/all-posts').then(response => {
+    self.isLoading = false
+    self.posts = response.data.posts
+  }).catch(() => {
+    self.isLoading = false
+  })
+}
+
 export {
   validation,
   get,
   create,
   update,
-  destroy
+  destroy,
+  allPosts
 }
