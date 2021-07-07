@@ -5,7 +5,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 v-if="editMode" class="modal-title">Edit Post</h5>
-            <h5 v-else class="modal-title">Create Post</h5>
             <button type="button" class="close" @click="closeModal">
               <span>&times;</span>
             </button>
@@ -55,7 +54,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="close-button btn btn-secondary" @click="closeModal">Close</button>
-            <button v-if="editMode" class="update-button" @click="updatePost($event.target)">
+            <button class="update-button" @click="updatePost($event.target)">
                   <span class="icon">
                     <font-awesome-icon :icon="['fas', 'pen-alt']"/>
                   </span>
@@ -63,15 +62,6 @@
                 <span class="sr-only">Loading...</span>
               </div>
               Update
-            </button>
-            <button v-else class="create-button" @click="createPost($event.target)">
-                  <span class="icon">
-                    <font-awesome-icon :icon="['fas', 'plus']"/>
-                  </span>
-              <div class="spinner-border text-light create-loader" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-              Create
             </button>
           </div>
         </div>
@@ -99,7 +89,7 @@ export default {
       description: '',
       // for image
       imagePreview: false,
-      noImage: require('../../assets/images/no-image.jpg'),
+      noImage: require('../../../assets/images/no-image.jpg'),
       postImage: ''
     }
   },
@@ -132,11 +122,8 @@ export default {
     postValidation () {
       return postService.validation()
     },
-    createPost (target) {
-      postService.create(target, this)
-    },
     updatePost (target) {
-      postService.update(target, this)
+      postService.adminUpdate(target, this)
     },
     upload () {
       this.$refs['hidden-button'].click()

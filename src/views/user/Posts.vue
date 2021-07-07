@@ -25,6 +25,18 @@
                   <font-awesome-icon :icon="['fas', 'trash']"/>
                 </span>
               </button>
+              <p v-if="post.checked" class="check">
+                <span>
+                  <font-awesome-icon :icon="['fas', 'check']"/>
+                </span>
+                Checked
+              </p>
+              <p v-else class="check">
+                <span>
+                  <font-awesome-icon :icon="['fas', 'times']"/>
+                </span>
+                Not checked
+              </p>
             </div>
           </div>
         </div>
@@ -42,8 +54,8 @@
 </template>
 
 <script>
-import ModalPosts from '@/components/Posts/ModalPosts.vue'
-import ShowPosts from '@/components/Posts/ShowPosts.vue'
+import ModalPosts from '@/components/user/posts/ModalPosts'
+import ShowPosts from '@/components/user/posts/ShowPosts'
 import * as postService from '@/services/postService'
 import * as Pagination from '../../pagination'
 
@@ -108,12 +120,17 @@ export default {
 }
 
 .card:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.4);
+  box-shadow: 0 0 11px rgba(33, 33, 33, .4);
 }
 
 .card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+.check {
+  margin: 0;
+  margin-top: 10px;
 }
 </style>

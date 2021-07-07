@@ -14,7 +14,7 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/all-posts">Posts</router-link>
         </li>
-        <li class="nav-item">
+        <li v-if="loggedIn" class="nav-item">
           <router-link class="nav-link" to="/posts">My Posts</router-link>
         </li>
       </ul>
