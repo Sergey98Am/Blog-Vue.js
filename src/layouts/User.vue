@@ -33,7 +33,7 @@ export default {
 
 .user {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/images/background.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../assets/images/background.jpg');
   background-size: cover;
   background-attachment: fixed;
 }

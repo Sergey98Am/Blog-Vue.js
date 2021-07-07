@@ -12,6 +12,9 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
+          <router-link class="nav-link" to="/all-posts">Posts</router-link>
+        </li>
+        <li class="nav-item">
           <router-link class="nav-link" to="/posts">My Posts</router-link>
         </li>
       </ul>
