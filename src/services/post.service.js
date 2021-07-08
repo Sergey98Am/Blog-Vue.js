@@ -99,6 +99,7 @@ function update (target, self) {
         }
         post.title = response.data.updatedPost.title
         post.description = response.data.updatedPost.description
+        post.checked = response.data.updatedPost.checked
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
