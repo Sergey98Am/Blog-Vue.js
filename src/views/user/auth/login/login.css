@@ -1,0 +1,39 @@
+.loader {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.login {
+  overflow: auto;
+  padding: 50px 0;
+  margin-top: 55px;
+}
+
+.login-form {
+  padding: 20px;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+label {
+  color: #000000;
+}
+
+input {
+  border: none;
+  border-bottom: 3px solid #000000;
+  background: none;
+  color: #000000 !important;
+}
+
+.submit-login {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #000000;
+  color: #ffffff;
+}
+
+small {
+  color: red;
+}

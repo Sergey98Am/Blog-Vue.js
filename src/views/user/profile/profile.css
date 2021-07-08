@@ -1,0 +1,57 @@
+.loader {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.profile {
+  overflow: auto;
+  padding: 50px 0;
+  margin-top: 55px;
+}
+
+.card {
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.card-header {
+  background: #393939;
+  color: #ffffff;
+}
+
+.card-header h2 {
+  margin: 0;
+}
+
+label {
+  color: #000000;
+}
+
+input {
+  border: none;
+  border-bottom: 3px solid #000000;
+  background: none;
+  color: #000000;
+}
+
+input:focus {
+  color: #000000;
+}
+input:read-only {
+  background-color: gray;
+}
+
+.personal-information button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.message {
+  display: none;
+  color: #000000;
+}

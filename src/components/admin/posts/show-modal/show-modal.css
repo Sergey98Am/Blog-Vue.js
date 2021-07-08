@@ -1,0 +1,34 @@
+.modal-dialog {
+  max-width: 650px;
+}
+
+.image-area {
+  overflow: hidden;
+}
+
+.image {
+  position: relative;
+  margin: 10px;
+}
+
+img {
+  border: 1px solid black;
+  width: 400px;
+  height: 150px;
+  object-fit: cover;
+  padding: 3px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.image .remove-image {
+  position: absolute;
+  right: 15px;
+  top: -5px;
+  background: red;
+  color: #ffffff;
+}
+
+.hidden {
+  display: none;
+}
