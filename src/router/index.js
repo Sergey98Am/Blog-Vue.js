@@ -9,11 +9,11 @@ import Profile from '@/views/user/Profile.vue'
 import Posts from '@/views/user/Posts.vue'
 import AllPosts from '@/views/user/AllPosts.vue'
 import Admin from '@/layouts/Admin.vue'
-import AdminHome from '@/views/admin/AdminHome.vue'
+import AdminHome from '@/views/admin/Home.vue'
 import Permissions from '@/views/admin/user-management/Permissions.vue'
 import Roles from '@/views/admin/user-management/Roles.vue'
 import Users from '@/views/admin/user-management/Users.vue'
-import AdminPosts from '@/views/admin/AdminPosts.vue'
+import AdminPosts from '@/views/admin/Posts.vue'
 
 Vue.use(Router)
 

@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import ModalPosts from '@/components/admin/posts/ModalPosts'
-import ShowPosts from '@/components/admin/posts/ShowPosts'
+import ModalPosts from '@/components/admin/posts/CreateEditModal.vue'
+import ShowPosts from '@/components/admin/posts/ShowModal'
 import * as postService from '@/services/postService'
 import * as Pagination from '../../pagination'
 

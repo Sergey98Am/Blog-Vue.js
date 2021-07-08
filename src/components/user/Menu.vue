@@ -5,7 +5,6 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div :class="{ toggled: isToggled }" class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -39,7 +38,7 @@
 </template>
 
 <script>
-import * as authService from '../services/authService'
+import * as authService from '../../services/authService'
 
 export default {
   data () {
