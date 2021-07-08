@@ -37,6 +37,7 @@
                   <div v-if="$can('post_check')" class="form-check">
                     <input v-model="post.checked" @change="checkPost(post)" class="checked-input" type="checkbox" :id="'checked-id-' + post.id">
                     <label class="checked-label" :for="'checked-id-' + post.id">Checked</label>
+                    <span class="checked"><font-awesome-icon :icon="['fas', 'check']"/></span>
                   </div>
                 </div>
               </div>
