@@ -1,0 +1,38 @@
+.navbar {
+  background: #393939;
+}
+
+a {
+  color: #ffffff !important;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+}
+
+.profile-button {
+  background: #55555f;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.logout {
+  background: #ffffff;
+  color: #314666;
+}
+
+.toggled {
+  display: block;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    align-items: center;
+  }
+
+  .navbar-nav li:first-child {
+    margin-bottom: 10px;
+  }
+}
