@@ -173,10 +173,6 @@ tbody {
   color: #ffffff;
 }
 
-.actions {
-  text-align: right;
-}
-
 .pagination > .active > a {
   background: #000000;
   color: #ffffff !important;

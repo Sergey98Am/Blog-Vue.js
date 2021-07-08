@@ -34,6 +34,13 @@
 }
 
 .check {
+  display: inline-block;
   margin: 0;
   margin-top: 10px;
+  font-size: 13px;
+}
+
+.edited {
+  color: dimgray;
+  font-size: 11px;
 }

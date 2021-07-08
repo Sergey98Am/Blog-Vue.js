@@ -22,20 +22,22 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ post.title }}</h5>
                   <p class="card-text">{{ post.description }}</p>
-                  <button @click="editModal(post)" class="btn btn-primary">
-                    <font-awesome-icon :icon="['fas', 'edit']"/>
-                  </button>
-                  <button @click="showModal(post)" class="btn btn-success">
-                    <font-awesome-icon :icon="['fas', 'eye']"/>
-                  </button>
-                  <button @click="deletePost($event.target, post.id)" class="btn btn-danger">
-                    <div class="spinner-border text-light delete-loader" role="status">
-                      <span class="sr-only">Loading...</span>
-                    </div>
-                    <span class="icon">
-                  <font-awesome-icon :icon="['fas', 'trash']"/>
-                </span>
-                  </button>
+                  <div class="actions">
+                    <button @click="editModal(post)" class="btn btn-primary">
+                      <font-awesome-icon :icon="['fas', 'edit']"/>
+                    </button>
+                    <button @click="showModal(post)" class="btn btn-success">
+                      <font-awesome-icon :icon="['fas', 'eye']"/>
+                    </button>
+                    <button @click="deletePost($event.target, post.id)" class="btn btn-danger">
+                      <div class="spinner-border text-light delete-loader" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <span class="icon">
+                        <font-awesome-icon :icon="['fas', 'trash']"/>
+                      </span>
+                    </button>
+                  </div>
                   <p v-if="post.checked" class="check">
                 <span>
                   <font-awesome-icon :icon="['fas', 'check']"/>
@@ -48,6 +50,7 @@
                 </span>
                     Not checked
                   </p>
+                  <span v-if="post.edited" class="edited"><b>Edited: {{post.updated_at}}</b></span>
                 </div>
               </div>
             </div>
