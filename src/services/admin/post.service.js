@@ -100,9 +100,13 @@ function check (post) {
   formData.append('_method', 'PUT')
   formData.append('id', post.id)
   formData.append('checked', checked)
-  console.log(post.checked)
   authAxios.post('/admin/check-post/' + post.id, formData).then(response => {
     post.checked = response.data.post.checked
+    let checked = document.querySelector('.checked')
+    checked.style.display = 'inline-block'
+    setTimeout(function () {
+      checked.style.display = 'none'
+    }, 2000)
   }).catch(error => error)
 }
 
