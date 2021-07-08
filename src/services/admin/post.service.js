@@ -66,6 +66,8 @@ function update (target, self) {
         }
         post.title = response.data.updatedPost.title
         post.description = response.data.updatedPost.description
+        post.edited = response.data.updatedPost.edited
+        post.updated_at = response.data.updatedPost.updated_at
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
