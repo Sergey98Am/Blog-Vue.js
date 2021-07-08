@@ -41,7 +41,7 @@
                     <label class="checked-label" :for="'checked-id-' + post.id">Checked</label>
                     <span class="checked"><font-awesome-icon :icon="['fas', 'check']"/></span>
                   </div>
-                  <span v-if="post.edited" class="edited"><b>Edited: {{post.updated_at}}</b></span>
+                  <span v-if="$can('post_check') && post.edited" class="edited"><b>Edited: {{post.updated_at}}</b></span>
                 </div>
               </div>
             </div>
