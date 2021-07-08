@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div v-if="isLoading" class="loading">
-            <div class="spinner-grow text-primary" role="status">
+            <div class="spinner-grow text-light" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
@@ -12,7 +12,7 @@
             <div class="col-12">
               <h1 class="title"><i><b>Posts</b></i></h1>
             </div>
-            <div v-for="post in displayedPosts" :key="post.id" class="col-3">
+            <div v-for="post in displayedPosts" :key="post.id" class="col-12 col-sm-6 col-xl-3">
               <div class="card">
                 <img :src="'http://blog.loc/images/' + post.image" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -34,7 +34,7 @@
                       <font-awesome-icon :icon="['fas', 'trash']"/>
                     </span>
                   </button>
-                  <div class="form-check">
+                  <div v-if="$can('post_check')" class="form-check">
                     <input v-model="post.checked" @change="checkPost(post)" class="checked-input" type="checkbox" :id="'checked-id-' + post.id">
                     <label class="checked-label" :for="'checked-id-' + post.id">Checked</label>
                   </div>
@@ -56,5 +56,5 @@
   </div>
 </template>
 
-<script src="./posts.js"></script>
+<script src="./posts.view.js"></script>
 <style src="./posts.css" scoped></style>

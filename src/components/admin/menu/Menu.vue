@@ -50,7 +50,7 @@
             </div>
           </li>
           <li class="nav-link">
-            <router-link v-if="$can('permission_access')" @click.native="toggleDropdownItem" to="/admin/posts"
+            <router-link v-if="$can('post_access')" @click.native="toggleDropdownItem" to="/admin/posts"
                          class="d-block">
               Posts
             </router-link>
@@ -61,5 +61,5 @@
   </div>
 </template>
 
-<script src="./menu.js"></script>
+<script src="./menu.component.js"></script>
 <style src="./menu.css" scoped></style>

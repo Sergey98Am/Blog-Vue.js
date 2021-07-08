@@ -1,4 +1,4 @@
-import * as permissionService from '@/services/admin/permissionService'
+import * as permissionService from '@/services/admin/user-management/permission.service'
 
 export default {
   props: [

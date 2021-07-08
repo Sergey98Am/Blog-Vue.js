@@ -1,11 +1,12 @@
 import CreateEditModal from '@/components/user/posts/create-edit-modal/CreateEditModal.vue'
 import ShowModal from '@/components/user/posts/show-modal/ShowModal.vue'
-import * as postService from '@/services/postService'
+import * as postService from '@/services/post.service'
 import * as Pagination from '@/pagination'
 
 export default {
   data () {
     return {
+      isLoading: false,
       page: 1,
       pageCount: 0,
       pageSize: 4,

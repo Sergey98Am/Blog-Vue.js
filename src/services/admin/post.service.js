@@ -2,7 +2,17 @@ import authAxios from '../../../config/authAxios'
 
 function validation () {
   return {
+    imageCreate: {
+      required: true,
+      ext: ['jpeg', 'jpg', 'png']
+    },
+    imageUpdate: {
+      ext: ['jpeg', 'jpg', 'png']
+    },
     title: {
+      required: true
+    },
+    description: {
       required: true
     }
   }
@@ -17,44 +27,13 @@ function serverSideValidation (self, error) {
   }
 }
 
-function get (self) {
+function allPosts (self) {
   self.isLoading = true
-  authAxios.get('/permissions').then(response => {
+  authAxios.get('/admin/posts').then(response => {
     self.isLoading = false
-    self.permissions = response.data.permissions
+    self.posts = response.data.posts
   }).catch(() => {
     self.isLoading = false
-  })
-}
-
-function create (target, self) {
-  self.$validator.validateAll().then((result) => {
-    if (result) {
-      // Loader
-      let loader = target.querySelector('.create-loader')
-      let icon = target.querySelector('.icon')
-      loader.style.display = 'inline-block'
-      icon.style.display = 'none'
-      // End Loader
-      let formData = new FormData()
-      formData.append('title', self.title)
-      authAxios.post('/permissions', formData).then(response => {
-        // Loader
-        loader.style.display = 'none'
-        icon.style.display = 'inline-block'
-        // End Loader
-        self.closeModal()
-        self.page = 1
-        let newPermission = response.data.permission
-        self.permissions.unshift(newPermission)
-      }).catch(error => {
-        // Loader
-        loader.style.display = 'none'
-        icon.style.display = 'inline-block'
-        // End Loader
-        serverSideValidation(self, error)
-      })
-    }
   })
 }
 
@@ -70,15 +49,23 @@ function update (target, self) {
       let formData = new FormData()
       formData.append('_method', 'PUT')
       formData.append('id', self.id)
+      if (self.$refs['hidden-button'].files[0]) {
+        formData.append('image', self.image)
+      }
       formData.append('title', self.title)
-      authAxios.post('/permissions/' + self.id, formData).then(response => {
+      formData.append('description', self.description)
+      authAxios.post('/admin/posts/' + self.id, formData).then(response => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
-        let permission = self.permissions.find(permission => permission.id === response.data.permission.id)
-        permission.title = response.data.permission.title
+        let post = self.posts.find(post => post.id === response.data.updatedPost.id)
+        if (self.$refs['hidden-button'].files[0]) {
+          post.image = response.data.updatedPost.image
+        }
+        post.title = response.data.updatedPost.title
+        post.description = response.data.updatedPost.description
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -95,11 +82,11 @@ function destroy (target, id, self) {
   target.querySelector('.delete-loader').style.display = 'inline-block'
   target.querySelector('.icon').style.display = 'none'
   // End Loader
-  authAxios.delete('/permissions/' + id).then(response => {
-    let permission
-    for (permission in self.permissions) {
-      if (self.permissions[permission].id === response.data.permission.id) {
-        self.permissions.splice(permission, 1)
+  authAxios.delete('/posts/' + id).then(response => {
+    let post
+    for (post in self.posts) {
+      if (self.posts[post].id === response.data.deletedPost.id) {
+        self.posts.splice(post, 1)
       }
     }
   }).catch(error => {
@@ -107,10 +94,22 @@ function destroy (target, id, self) {
   })
 }
 
+function check (post) {
+  let checked = post.checked ? 1 : 0
+  let formData = new FormData()
+  formData.append('_method', 'PUT')
+  formData.append('id', post.id)
+  formData.append('checked', checked)
+  console.log(post.checked)
+  authAxios.post('/admin/check-post/' + post.id, formData).then(response => {
+    post.checked = response.data.post.checked
+  }).catch(error => error)
+}
+
 export {
   validation,
-  get,
-  create,
+  allPosts,
   update,
-  destroy
+  destroy,
+  check
 }

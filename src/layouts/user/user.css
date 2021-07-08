@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh
+  min-height: 80vh !important;
 }
 
 .spinner-border {
@@ -161,14 +161,14 @@ input:focus {
 }
 
 .pagination > .active > a {
-  background: #08162d;
-  color: #ffffff !important;
+  background: #ffffff;
+  color: #000000 !important;
 }
 
 .pagination > li > a {
   display: block;
   padding: 6px 12px;
-  background: #2e415e;
+  background: #000000;
   color: #ffffff !important;
   text-decoration: none;
   outline: none;

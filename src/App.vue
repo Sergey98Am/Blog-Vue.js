@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import * as CheckToken from './services/checkToken'
+import * as CheckToken from './services/check-token.service'
 
 export default {
   name: 'App',

@@ -3,9 +3,9 @@
 }
 
 .admin {
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/images/adminBackground.jpg');*/
-  /*background-size: cover;*/
-  /*background-attachment: fixed;*/
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../assets/images/admin-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
   min-height: 100vh;
 }
 
@@ -178,15 +178,15 @@ tbody {
 }
 
 .pagination > .active > a {
-  background: #08162d;
+  background: #000000;
   color: #ffffff !important;
 }
 
 .pagination > li > a {
   display: block;
   padding: 6px 12px;
-  background: #2e415e;
-  color: #ffffff !important;
+  background: #ffffff;
+  color: #000000 !important;
   text-decoration: none;
   outline: none;
 }

@@ -46,5 +46,5 @@
   </div>
 </template>
 
-<script src="./login.js"></script>
+<script src="./login.view.js"></script>
 <style src="./login.css" scoped></style>
