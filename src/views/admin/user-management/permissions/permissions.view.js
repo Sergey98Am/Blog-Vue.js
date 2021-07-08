@@ -1,5 +1,5 @@
 import permissionsModal from '@/components/admin/user-management/permissions-modal/PermissionsModal.vue'
-import * as permissionService from '@/services/admin/permissionService'
+import * as permissionService from '@/services/admin/user-management/permission.service'
 import * as Pagination from '../../../../pagination'
 
 export default {

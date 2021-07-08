@@ -37,5 +37,5 @@
   </nav>
 </template>
 
-<script src="./menu.js"></script>
+<script src="./menu.component.js"></script>
 <style src="./menu.css" scoped></style>

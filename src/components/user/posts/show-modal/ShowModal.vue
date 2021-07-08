@@ -29,5 +29,5 @@
   </transition>
 </template>
 
-<script src="./show-modal.js"></script>
+<script src="./show-modal.component.js"></script>
 <style src="./show-modal.css" scoped></style>

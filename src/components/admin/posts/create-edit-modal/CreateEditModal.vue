@@ -70,5 +70,5 @@
   </transition>
 </template>
 
-<script src="./create-edit-modal.js"></script>
+<script src="./create-edit-modal.component.js"></script>
 <style src="./create-edit-modal.css" scoped></style>

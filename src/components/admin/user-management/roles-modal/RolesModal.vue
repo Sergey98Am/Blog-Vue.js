@@ -59,4 +59,4 @@
   </transition>
 </template>
 
-<script src="./roles-modal.js"></script>
+<script src="./roles-modal.component.js"></script>

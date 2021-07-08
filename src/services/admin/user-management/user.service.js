@@ -1,8 +1,20 @@
-import authAxios from '../../../config/authAxios'
+import authAxios from '../../../../config/authAxios'
 
 function validation () {
   return {
-    title: {
+    name: {
+      required: true,
+      regex: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/
+    },
+    email: {
+      required: true,
+      email: true
+    },
+    password: {
+      required: true,
+      min: 8
+    },
+    role_id: {
       required: true
     }
   }
@@ -11,18 +23,24 @@ function validation () {
 function serverSideValidation (self, error) {
   const data = error.response.data
   if (data.error) {
-    if (data.error.title) {
-      self.$validator.errors.add({field: 'title', msg: data.error.title[0]})
+    if (data.error.name) {
+      self.$validator.errors.add({field: 'name', msg: data.error.name[0]})
+    }
+    if (data.error.email) {
+      self.$validator.errors.add({field: 'email', msg: data.error.email[0]})
+    }
+    if (data.error.password) {
+      self.$validator.errors.add({field: 'password', msg: data.error.password[0]})
     }
   }
 }
 
 function get (self) {
   self.isLoading = true
-  authAxios.get('/roles').then(response => {
+  authAxios.get('/admin/users').then(response => {
     self.isLoading = false
     self.roles = response.data.roles
-    self.permissions = response.data.permissions
+    self.users = response.data.users
   }).catch(() => {
     self.isLoading = false
   })
@@ -38,19 +56,19 @@ function create (target, self) {
       icon.style.display = 'none'
       // End Loader
       let formData = new FormData()
-      formData.append('title', self.title)
-      for (let i = 0; i < self.selectedPermissions.length; i++) {
-        formData.append('permissions[]', self.selectedPermissions[i])
-      }
-      authAxios.post('/roles', formData).then(response => {
+      formData.append('name', self.form.name)
+      formData.append('email', self.form.email)
+      formData.append('password', self.form.password)
+      formData.append('role_id', self.form.role_id)
+      authAxios.post('/admin/users', formData).then(response => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
         self.page = 1
-        let newRole = response.data.role
-        self.roles.unshift(newRole)
+        let newUser = response.data.user
+        self.users.unshift(newUser)
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -73,19 +91,23 @@ function update (target, self) {
       // End Loader
       let formData = new FormData()
       formData.append('_method', 'PUT')
-      formData.append('id', self.id)
-      formData.append('title', self.title)
-      for (let i = 0; i < self.selectedPermissions.length; i++) {
-        formData.append('permissions[]', self.selectedPermissions[i])
-      }
-      authAxios.post('/roles/' + self.id, formData).then(response => {
+      formData.append('id', self.form.id)
+      formData.append('name', self.form.name)
+      formData.append('role_id', self.form.role_id)
+      authAxios.post('/admin/users/' + self.form.id, formData).then(response => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
-        let role = self.roles.find(role => role.id === response.data.role.id)
-        role.permissions = response.data.role.permissions
+        let user
+        for (user of self.users) {
+          if (user.id === response.data.user.id) {
+            Object.keys(user).forEach(function (item) {
+              user[item] = response.data.user[item]
+            })
+          }
+        }
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -102,16 +124,14 @@ function destroy (target, id, self) {
   target.querySelector('.delete-loader').style.display = 'inline-block'
   target.querySelector('.icon').style.display = 'none'
   // End Loader
-  authAxios.delete('/roles/' + id).then(response => {
-    let role
-    for (role in self.roles) {
-      if (self.roles[role].id === response.data.role.id) {
-        self.roles.splice(role, 1)
+  authAxios.delete('/admin/users/' + id).then(response => {
+    let user
+    for (user in self.users) {
+      if (self.users[user].id === response.data.user.id) {
+        self.users.splice(user, 1)
       }
     }
-  }).catch(error => {
-    console.log(error)
-  })
+  }).catch(error => error)
 }
 
 export {

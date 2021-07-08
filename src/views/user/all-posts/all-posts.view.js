@@ -1,10 +1,11 @@
 import ShowModal from '@/components/user/posts/show-modal/ShowModal'
-import * as postService from '@/services/postService'
+import * as postService from '@/services/post.service'
 import * as Pagination from '@/pagination'
 
 export default {
   data () {
     return {
+      isLoading: false,
       page: 1,
       pageCount: 0,
       pageSize: 4,

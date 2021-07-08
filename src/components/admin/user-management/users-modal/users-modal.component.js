@@ -1,4 +1,4 @@
-import * as userService from '@/services/admin/userService'
+import * as userService from '@/services/admin/user-management/user.service'
 
 export default {
   props: [

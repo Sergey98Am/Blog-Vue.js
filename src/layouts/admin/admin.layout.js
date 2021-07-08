@@ -14,7 +14,7 @@ export default {
     $route: {
       handler () {
         this.isLoading = true
-        authAxios.get('/abilities').then(response => {
+        authAxios.get('/admin/abilities').then(response => {
           this.isLoading = false
           let abilities = response.data.permissions
           if (abilities.includes('view_admin_dashboard')) {

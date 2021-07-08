@@ -53,4 +53,4 @@
   </transition>
 </template>
 
-<script src="./permissions-modal.js"></script>
+<script src="./permissions-modal.component.js"></script>

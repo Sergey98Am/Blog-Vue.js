@@ -1,4 +1,4 @@
-import * as authService from '../../../../services/authService'
+import * as authService from '../../../../services/auth.service'
 
 export default {
   data () {

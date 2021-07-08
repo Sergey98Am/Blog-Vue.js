@@ -72,5 +72,5 @@
   </div>
 </template>
 
-<script src="./register.js"></script>
+<script src="./register.view.js"></script>
 <style src="./register.css" scoped></style>

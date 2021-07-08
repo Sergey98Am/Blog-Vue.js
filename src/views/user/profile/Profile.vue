@@ -75,5 +75,5 @@
   </div>
 </template>
 
-<script src="./profile.js"></script>
+<script src="./profile.view.js"></script>
 <style src="./profile.css" scoped></style>

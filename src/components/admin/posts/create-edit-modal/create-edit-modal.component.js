@@ -1,4 +1,4 @@
-import * as postService from '@/services/postService'
+import * as postService from '@/services/admin/post.service'
 
 export default {
   props: [
@@ -48,9 +48,6 @@ export default {
     // Validation
     postValidation () {
       return postService.validation()
-    },
-    createPost (target) {
-      postService.create(target, this)
     },
     updatePost (target) {
       postService.update(target, this)

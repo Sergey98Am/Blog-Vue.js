@@ -1,4 +1,4 @@
-import * as postService from '@/services/postService'
+import * as postService from '@/services/post.service'
 
 export default {
   props: [
@@ -49,8 +49,11 @@ export default {
     postValidation () {
       return postService.validation()
     },
+    createPost (target) {
+      postService.create(target, this)
+    },
     updatePost (target) {
-      postService.adminUpdate(target, this)
+      postService.update(target, this)
     },
     upload () {
       this.$refs['hidden-button'].click()

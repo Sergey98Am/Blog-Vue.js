@@ -1,5 +1,5 @@
 import usersModal from '@/components/admin/user-management/users-modal/UsersModal.vue'
-import * as userService from '@/services/admin/userService'
+import * as userService from '@/services/admin/user-management/user.service'
 import * as Pagination from '@/pagination'
 
 export default {

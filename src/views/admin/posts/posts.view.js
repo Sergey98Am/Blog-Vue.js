@@ -1,6 +1,6 @@
 import ModalPosts from '@/components/admin/posts/create-edit-modal/CreateEditModal.vue'
 import ShowPosts from '@/components/admin/posts/show-modal/ShowModal.vue'
-import * as postService from '@/services/postService'
+import * as postService from '@/services/admin/post.service'
 import * as Pagination from '@/pagination'
 
 export default {
@@ -33,7 +33,7 @@ export default {
       this.$refs['show-posts'].newModal(post)
     },
     getAllPosts () {
-      postService.adminAllPosts(this)
+      postService.allPosts(this)
     },
     deletePost (target, id) {
       postService.destroy(target, id, this)

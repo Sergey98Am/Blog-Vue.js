@@ -5,5 +5,5 @@
   </div>
 </template>
 
-<script src="./user.js"></script>
+<script src="./user.layout.js"></script>
 <style src="./user.css"></style>

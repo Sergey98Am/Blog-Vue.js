@@ -1,4 +1,4 @@
-import * as roleService from '@/services/admin/roleService'
+import * as roleService from '@/services/admin/user-management/role.service'
 
 export default {
   props: [

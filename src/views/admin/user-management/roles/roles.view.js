@@ -1,5 +1,5 @@
 import rolesModal from '@/components/admin/user-management/roles-modal/RolesModal.vue'
-import * as roleService from '@/services/admin/roleService'
+import * as roleService from '@/services/admin/user-management/role.service'
 import * as Pagination from '@/pagination'
 
 export default {

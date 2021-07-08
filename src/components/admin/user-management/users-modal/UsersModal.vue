@@ -94,4 +94,4 @@
   </transition>
 </template>
 
-<script src="./users-modal.js"></script>
+<script src="./users-modal.component.js"></script>

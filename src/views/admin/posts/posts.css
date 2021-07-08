@@ -16,6 +16,18 @@
   object-fit: cover;
 }
 
+.card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.card h6 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
 .card .form-check {
   padding-left: 0;
   margin-top: 10px;

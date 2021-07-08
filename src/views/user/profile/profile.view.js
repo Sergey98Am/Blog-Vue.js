@@ -1,4 +1,4 @@
-import * as userService from '../../../services/userService'
+import * as userService from '../../../services/user.service'
 
 export default {
   data () {

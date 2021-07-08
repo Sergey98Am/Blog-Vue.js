@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div v-if="isLoading" class="loading">
-            <div class="spinner-grow text-primary" role="status">
+            <div class="spinner-grow text-light" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
@@ -65,7 +65,7 @@
   </div>
 </template>
 
-<script src="./users.js"></script>
+<script src="./users.view.js"></script>
 
 <style>
 .loading {
