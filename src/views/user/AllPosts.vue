@@ -29,14 +29,14 @@
         </div>
       </div>
     </div>
-    <show-posts ref="show-posts"></show-posts>
+    <show-modal ref="show-posts"></show-modal>
   </div>
 </template>
 
 <script>
-import ShowPosts from '@/components/user/posts/ShowPosts.vue'
+import ShowModal from '@/components/user/posts/ShowModal'
 import * as postService from '@/services/postService'
-import * as Pagination from '../../pagination'
+import * as Pagination from '@/pagination'
 
 export default {
   data () {
@@ -48,7 +48,7 @@ export default {
     }
   },
   components: {
-    'show-posts': ShowPosts
+    'show-modal': ShowModal
   },
   computed: {
     displayedPosts () {
@@ -76,10 +76,6 @@ export default {
   margin-top: 55px;
 }
 
-.create-post {
-  margin-bottom: 20px;
-}
-
 .card {
   transition: box-shadow .3s;
   background-color: rgba(255, 255, 255, 0.9) !important;
@@ -96,6 +92,13 @@ export default {
   width: 100%;
   height: 220px;
   object-fit: cover;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .show-modal {

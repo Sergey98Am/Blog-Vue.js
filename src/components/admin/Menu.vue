@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
-    <nav class="navbar navbar-expand-lg navbar-light p-0 fixed-top">
-      <router-link to="/admin" class="navbar-brand ml-2">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <router-link to="/admin" class="navbar-brand">
         <b><i>Admin Panel</i></b>
       </router-link>
       <button @click="toggle" class="navbar-toggler" type="button">
@@ -16,8 +16,8 @@
         </li>
       </ul>
     </nav>
-    <div class="sidebarMenu" :class="{ toggled: isToggled }">
-      <div class="sidebar-sticky pt-3">
+    <div class="sidebar" :class="{ toggled: isToggled }">
+      <div class="sidebar-menu">
         <ul class="nav flex-column">
           <li class="nav-item">
             <router-link to="/admin" class="nav-link active" href="#">
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import * as authService from '../services/authService'
+import * as authService from '../../services/authService'
 
 export default {
   name: 'Menu',
@@ -101,10 +101,9 @@ export default {
   cursor: pointer;
 }
 
-/* Navbar */
 .navbar {
   z-index: 9999;
-  padding: 0 15px;
+  padding: 5px 15px;
   border-bottom: 1px solid white;
   margin-bottom: 0;
   background: #242424;
@@ -118,20 +117,19 @@ export default {
   left: 0 !important;
 }
 
-/* Sidebar */
-.sidebarMenu {
+.sidebar {
   position: fixed;
   z-index: 999;
   top: 0;
   left: 0;
   bottom: 0;
   width: 250px;
-  padding: 48px 0 0;
+  padding: 60px 0 0;
   background: #242424;
   transition: 0.5s;
 }
 
-.sidebar-sticky {
+.sidebar-menu {
   overflow: auto;
   height: calc(100vh - 48px);
   text-align: start;
@@ -172,7 +170,7 @@ export default {
     width: 200px;
   }
 
-  .sidebarMenu {
+  .sidebar {
     width: 100%;
     left: -100%;
     padding: 100px 0 0;

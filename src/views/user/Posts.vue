@@ -48,16 +48,16 @@
         </div>
       </div>
     </div>
-    <modal-posts :posts="posts" ref="modal-posts"></modal-posts>
-    <show-posts ref="show-posts"></show-posts>
+    <create-edit-modal :posts="posts" ref="modal-posts"></create-edit-modal>
+    <show-modal ref="show-posts"></show-modal>
   </div>
 </template>
 
 <script>
-import ModalPosts from '@/components/user/posts/ModalPosts'
-import ShowPosts from '@/components/user/posts/ShowPosts'
+import CreateEditModal from '@/components/user/posts/CreateEditModal.vue'
+import ShowModal from '@/components/user/posts/ShowModal'
 import * as postService from '@/services/postService'
-import * as Pagination from '../../pagination'
+import * as Pagination from '@/pagination'
 
 export default {
   data () {
@@ -69,8 +69,8 @@ export default {
     }
   },
   components: {
-    'modal-posts': ModalPosts,
-    'show-posts': ShowPosts
+    'create-edit-modal': CreateEditModal,
+    'show-modal': ShowModal
   },
   computed: {
     displayedPosts () {
@@ -127,6 +127,13 @@ export default {
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .check {

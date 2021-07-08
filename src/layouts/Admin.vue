@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <div v-if="$can('view_admin_dashboard')" class="a d-flex flex-column">
-      <v-menu></v-menu>
+      <admin-menu></admin-menu>
       <div class="main">
         <router-view></router-view>
       </div>
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import Menu from '../components/AdminMenu'
+import Menu from '@/components/admin/Menu'
 import authAxios from '../../config/authAxios'
 
 export default {
   components: {
-    'v-menu': Menu
+    'admin-menu': Menu
   },
   data () {
     return {
@@ -61,7 +61,10 @@ export default {
   min-height: 100vh;
 }
 
-/* Loader */
+label {
+  color: #000000;
+}
+
 .loading {
   display: flex;
   justify-content: center;
@@ -80,10 +83,10 @@ export default {
 }
 
 .main {
-  overflow: auto;
-  height: calc(100vh - 41px);
+  /*overflow: auto;*/
+  /*height: calc(100vh - 41px);*/
   padding-top: 25px;
-  margin-top: 41px;
+  margin-top: 50px;
   margin-left: 250px;
 }
 
@@ -134,10 +137,6 @@ input:read-only {
 }
 
 .modal-title {
-  color: #000000;
-}
-
-label {
   color: #000000;
 }
 

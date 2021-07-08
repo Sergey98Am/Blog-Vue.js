@@ -1,15 +1,17 @@
 <template>
   <div class="user">
-    <Navbar></Navbar>
+    <user-menu></user-menu>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Navbar from '../components/UserNavbar'
+import Menu from '../components/user/Menu'
 
 export default {
-  components: {Navbar}
+  components: {
+    'user-menu': Menu
+  }
 }
 </script>
 
@@ -50,6 +52,10 @@ export default {
 
 .modal-title {
   color: #000000;
+}
+
+.icon {
+  pointer-events: none;
 }
 
 label {

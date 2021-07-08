@@ -87,7 +87,7 @@ function update (target, self) {
       }
       formData.append('title', self.title)
       formData.append('description', self.description)
-      authAxios.post('/admin/update-post/' + self.id, formData).then(response => {
+      authAxios.post('/posts/' + self.id, formData).then(response => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
