@@ -38,8 +38,8 @@ export default {
     deletePost (target, id) {
       postService.destroy(target, id, this)
     },
-    checkPost (post) {
-      postService.check(post, this)
+    checkPost (target, post) {
+      postService.check(target, post, this)
     }
   }
 }

@@ -96,7 +96,7 @@ function destroy (target, id, self) {
   })
 }
 
-function check (post) {
+function check (target, post) {
   let checked = post.checked ? 1 : 0
   let formData = new FormData()
   formData.append('_method', 'PUT')
@@ -104,7 +104,7 @@ function check (post) {
   formData.append('checked', checked)
   authAxios.post('/admin/check-post/' + post.id, formData).then(response => {
     post.checked = response.data.post.checked
-    let checked = document.querySelector('.checked')
+    let checked = target.closest('.form-check').querySelector('.checked')
     checked.style.display = 'inline-block'
     setTimeout(function () {
       checked.style.display = 'none'
