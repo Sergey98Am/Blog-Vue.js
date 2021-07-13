@@ -25,6 +25,18 @@
                         <font-awesome-icon :icon="['fas', 'eye']"/>
                       </button>
                       <p><b>by</b> {{ post.user.name }}</p>
+                      <div v-if="$store.getters.get_loggedIn" class="like-system">
+                        <button :style="post.liked_by_auth_user ? 'color: green' : 'color: red'" @click="saveLike($event.target, post)">
+                          <span class="icon"><font-awesome-icon :icon="['fas', 'thumbs-up']"/></span>
+                        </button>
+                        <span>( {{ post.likes.length }} )</span>
+                      </div>
+                      <div v-else class="like-system">
+                        <button style="color: grey; cursor: default">
+                          <span class="icon"><font-awesome-icon :icon="['fas', 'thumbs-up']"/></span>
+                        </button>
+                        <span>( {{ post.likes.length }} )</span>
+                      </div>
                     </div>
                   </div>
                 </div>

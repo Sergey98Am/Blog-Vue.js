@@ -140,11 +140,29 @@ function allPosts (self) {
   })
 }
 
+function saveLike (target, post) {
+  authAxios.post('/save-like/post/' + post.id).then(response => {
+    if (response.data.deleted) {
+      let like
+      for (like in post.likes) {
+        if (post.likes[like].id === response.data.like.id) {
+          post.likes.splice(like, 1)
+        }
+      }
+      target.style.color = 'red'
+    } else {
+      post.likes.push(response.data.like)
+      target.style.color = 'green'
+    }
+  }).catch(error => error)
+}
+
 export {
   validation,
   get,
   create,
   update,
   destroy,
-  allPosts
+  allPosts,
+  saveLike
 }
