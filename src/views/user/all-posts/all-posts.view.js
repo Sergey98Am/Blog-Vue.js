@@ -29,6 +29,9 @@ export default {
     },
     getAllPosts () {
       postService.allPosts(this)
+    },
+    saveLike (target, post) {
+      postService.saveLike(target, post, this)
     }
   }
 }
