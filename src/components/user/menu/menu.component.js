@@ -16,6 +16,7 @@ export default {
       this.isToggled = !this.isToggled
     },
     LogoutRequest () {
+      this.isToggled = false;
       authService.logout(this)
     }
   }

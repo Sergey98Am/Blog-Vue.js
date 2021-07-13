@@ -20,6 +20,7 @@ export default {
       this.toggleOnOff = !this.toggleOnOff
     },
     LogoutRequest () {
+      this.isToggled = false;
       authService.logout(this)
     }
   }
