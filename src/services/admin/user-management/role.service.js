@@ -85,6 +85,7 @@ function update (target, self) {
         // End Loader
         self.closeModal()
         let role = self.roles.find(role => role.id === response.data.role.id)
+        role.title = response.data.role.title
         role.permissions = response.data.role.permissions
       }).catch(error => {
         // Loader

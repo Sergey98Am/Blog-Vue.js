@@ -39,7 +39,7 @@ export default {
       postService.destroy(target, id, this)
     },
     checkPost (target, post) {
-      postService.check(target, post, this)
+      postService.check(target, post)
     }
   }
 }

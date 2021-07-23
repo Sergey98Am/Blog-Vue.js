@@ -103,7 +103,7 @@ function check (target, post) {
   formData.append('id', post.id)
   formData.append('checked', checked)
   authAxios.post('/admin/check-post/' + post.id, formData).then(response => {
-    post.checked = response.data.post.checked
+    post.checked = response.data.checkPost.checked
     let checked = target.closest('.form-check').querySelector('.checked')
     checked.style.display = 'inline-block'
     setTimeout(function () {
