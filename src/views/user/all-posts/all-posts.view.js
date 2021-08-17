@@ -9,7 +9,7 @@ export default {
       page: 1,
       pageCount: 0,
       pageSize: 4,
-      posts: []
+      postOrPosts: []
     }
   },
   components: {
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     displayedPosts () {
-      return Pagination.paginate(this, this.posts)
+      return Pagination.paginate(this, this.postOrPosts)
     }
   },
   mounted () {

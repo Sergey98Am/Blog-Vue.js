@@ -2,7 +2,7 @@ import * as postService from '@/services/post.service'
 
 export default {
   props: [
-    'posts'
+    'postOrPosts'
   ],
   data () {
     return {
@@ -43,6 +43,7 @@ export default {
       this.title = ''
       this.description = ''
       this.imagePreview = ''
+      this.$refs['hidden-button'].value = ''
     },
 
     // Validation

@@ -13,6 +13,7 @@
           <div class="row">
             <div class="col-12">
               <div class="create-post">
+                <force-update :forceUpdate="getPosts"></force-update>
                 <button @click="openModal" class="btn btn-light">Create post</button>
               </div>
             </div>
@@ -50,7 +51,7 @@
                 </span>
                     Not checked
                   </p>
-                  <span v-if="post.edited" class="edited"><b>Edited: {{post.updated_at}}</b></span>
+                  <span v-if="post.edited" class="edited"><b>Edited: {{ post.updated_at }}</b></span>
                 </div>
               </div>
             </div>
@@ -64,7 +65,7 @@
         </div>
       </div>
     </div>
-    <create-edit-modal :posts="posts" ref="modal-posts"></create-edit-modal>
+    <create-edit-modal :postOrPosts="postOrPosts" ref="modal-posts"></create-edit-modal>
     <show-modal ref="show-posts"></show-modal>
   </div>
 </template>

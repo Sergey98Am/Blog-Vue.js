@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../store/user'
+import store from '../store'
 import User from '@/layouts/user/user.vue'
 import Home from '@/views/Home'
 import Register from '@/views/user/auth/register/Register.vue'
@@ -8,6 +8,8 @@ import Login from '@/views/user/auth/login/Login.vue'
 import Profile from '@/views/user/profile/Profile.vue'
 import Posts from '@/views/user/posts/Posts.vue'
 import AllPosts from '@/views/user/all-posts/AllPosts.vue'
+import Notification from '@/views/user/notifications/Notification.vue'
+import Post from '@/views/user/notifications/posts/Post.vue'
 import Admin from '@/layouts/admin/Admin.vue'
 import AdminHome from '@/views/admin/Home.vue'
 import Permissions from '@/views/admin/user-management/permissions/Permissions.vue'
@@ -66,6 +68,21 @@ const router = new Router({
           path: 'all-posts',
           name: 'AllPosts',
           component: AllPosts
+        },
+        {
+          path: '/notification',
+          name: 'Notification',
+          component: Notification,
+          meta: {
+            auth: true
+          },
+          children: [
+            {
+              path: '/notification/notify_id/:notificationId/post_id/:postId',
+              name: 'Post',
+              component: Post
+            }
+          ]
         }
       ]
     },

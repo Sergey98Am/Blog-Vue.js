@@ -1,4 +1,5 @@
 import authAxios from '../../config/authAxios'
+import * as postOrPosts from '@/services/postOrPosts/post-or-posts'
 
 function validation () {
   return {
@@ -31,7 +32,7 @@ function get (self) {
   self.isLoading = true
   authAxios.get('/posts').then(response => {
     self.isLoading = false
-    self.posts = response.data.posts
+    self.postOrPosts = response.data.posts
   }).catch(() => {
     self.isLoading = false
   })
@@ -40,6 +41,7 @@ function get (self) {
 function create (target, self) {
   self.$validator.validateAll().then((result) => {
     if (result) {
+      let posts = self.postOrPosts
       // Loader
       let loader = target.querySelector('.create-loader')
       let icon = target.querySelector('.icon')
@@ -58,7 +60,7 @@ function create (target, self) {
         self.closeModal()
         self.page = 1
         let newPost = response.data.createdPost
-        self.posts.unshift(newPost)
+        posts.unshift(newPost)
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -93,7 +95,7 @@ function update (target, self) {
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
-        let post = self.posts.find(post => post.id === response.data.updatedPost.id)
+        let post = postOrPosts.PostOrPostsUpdate(self.postOrPosts, response)
         if (self.$refs['hidden-button'].files[0]) {
           post.image = response.data.updatedPost.image
         }
@@ -113,28 +115,24 @@ function update (target, self) {
   })
 }
 
-function destroy (target, id, self) {
+function destroy (target, postId, self) {
   // Loader
   target.querySelector('.delete-loader').style.display = 'inline-block'
   target.querySelector('.icon').style.display = 'none'
   // End Loader
-  authAxios.delete('/posts/' + id).then(response => {
-    let post
-    for (post in self.posts) {
-      if (self.posts[post].id === response.data.deletedPost.id) {
-        self.posts.splice(post, 1)
-      }
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  authAxios.delete('/posts/' + postId).then(response => {
+    self.$store.dispatch('notificationsLastId')
+    self.$store.dispatch('getUnreadNotificationsCount')
+    self.$store.dispatch('postNotifications', {postId: postId})
+    return postOrPosts.PostOrPostsDelete(self, self.postOrPosts, response)
+  }).catch(error => error)
 }
 
 function allPosts (self) {
   self.isLoading = true
   authAxios.get('/all-posts').then(response => {
     self.isLoading = false
-    self.posts = response.data.posts
+    self.postOrPosts = response.data.posts
   }).catch(() => {
     self.isLoading = false
   })
@@ -157,6 +155,19 @@ function saveLike (target, post) {
   }).catch(error => error)
 }
 
+function post (self) {
+  let postId = self.$route.params.postId
+  authAxios.get('/post/' + postId).then(response => {
+    let post = self.postOrPosts
+    let result = response.data
+    post.id = result.id
+    post.image = result.image
+    post.title = result.title
+    post.description = result.description
+    post.checked = result.checked
+  }).catch(error => error)
+}
+
 export {
   validation,
   get,
@@ -164,5 +175,6 @@ export {
   update,
   destroy,
   allPosts,
-  saveLike
+  saveLike,
+  post
 }
