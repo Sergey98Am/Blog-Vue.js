@@ -50,11 +50,13 @@ function register (self) {
         password: self.user.password,
         password_confirmation: self.user.password_confirmation,
         remember_me: self.user.remember_me
-      }).then(response => {
-        if (response.data.user.role_id !== 1) {
-          return self.$router.push('/admin')
-        }
-        return self.$router.push('/')
+      }).then(() => {
+        window.Echo.connect()
+        let auth = window.Echo.connector.pusher.config.auth
+        let getters = self.$store.getters
+        auth.headers['Authorization'] = getters.get_token
+        self.$store.dispatch('renderNotifications')
+        self.$router.push('/')
       }).catch(error => {
         registerServerSideValidation(self, error)
       })
@@ -98,10 +100,15 @@ function login (self) {
         password: self.password,
         remember_me: self.remember_me
       }).then(response => {
+        window.Echo.connect()
+        let auth = window.Echo.connector.pusher.config.auth
+        let getters = self.$store.getters
+        auth.headers['Authorization'] = getters.get_token
+        self.$store.dispatch('renderNotifications')
         if (response.data.user.role_id !== 1) {
           return self.$router.push('/admin')
         }
-        return self.$router.push('/')
+        self.$router.push('/')
       }).catch(error => {
         loginServerSideValidation(self, error)
       })
@@ -111,12 +118,13 @@ function login (self) {
 
 function logout (self) {
   self.$store.dispatch('logoutAction').then(() => {
+    window.Echo.disconnect()
+    window.Echo.connector.pusher.config.auth.headers['Authorization'] = null
+    self.$store.dispatch('removeNotifications')
     if (self.$route.path !== '/') {
       self.$router.push('/')
     }
-  }).catch(error => {
-    console.log(error)
-  })
+  }).catch(error => error)
 }
 
 export {

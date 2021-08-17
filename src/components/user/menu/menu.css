@@ -24,7 +24,23 @@ button {
 }
 
 .toggled {
-  display: block;
+  display: block !important;
+}
+
+.toggled-on {
+  display: block !important;
+}
+
+.dropdown-menu a {
+  color: black !important;
+}
+
+.removed-dropdown-toggle:after {
+  display: none;
+}
+
+.dropdown span:first-child {
+  pointer-events: none;
 }
 
 @media (max-width: 991px) {
@@ -32,7 +48,23 @@ button {
     align-items: center;
   }
 
-  .navbar-nav li:first-child {
-    margin-bottom: 10px;
+  .dropdown-menu {
+    position: fixed !important;
+    right: 0;
+    left: 0;
+    top: 53px;
   }
+}
+
+.dropdown-menu {
+  overflow: auto;
+  max-height: 270px;
+}
+
+.dropdown span:first-child {
+  pointer-events: none;
+}
+
+.icon {
+  font-size: 18px;
 }

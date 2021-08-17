@@ -1,5 +1,6 @@
 import CreateEditModal from '@/components/user/posts/create-edit-modal/CreateEditModal.vue'
 import ShowModal from '@/components/user/posts/show-modal/ShowModal.vue'
+import ForceUpdate from '@/components/forceUpdate.vue'
 import * as postService from '@/services/post.service'
 import * as Pagination from '@/pagination'
 
@@ -10,16 +11,17 @@ export default {
       page: 1,
       pageCount: 0,
       pageSize: 4,
-      posts: []
+      postOrPosts: []
     }
   },
   components: {
     'create-edit-modal': CreateEditModal,
-    'show-modal': ShowModal
+    'show-modal': ShowModal,
+    'force-update': ForceUpdate
   },
   computed: {
     displayedPosts () {
-      return Pagination.paginate(this, this.posts)
+      return Pagination.paginate(this, this.postOrPosts)
     }
   },
   mounted () {
@@ -38,8 +40,8 @@ export default {
     getPosts () {
       postService.get(this)
     },
-    deletePost (target, id) {
-      postService.destroy(target, id, this)
+    deletePost (target, postId) {
+      postService.destroy(target, postId, this)
     }
   }
 }

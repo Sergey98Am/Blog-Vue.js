@@ -3,7 +3,7 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import VeeValidate from 'vee-validate'
-import store from './store/user'
+import store from './store'
 import Paginate from 'vuejs-paginate'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
@@ -14,6 +14,7 @@ import Multiselect from 'vue-multiselect'
 import VueSpinners from 'vue-spinners'
 import {abilitiesPlugin} from '@casl/vue'
 import ability from '../config/ability'
+import Echo from 'laravel-echo'
 
 Vue.use(VeeValidate, {
   events: ''
@@ -25,6 +26,21 @@ library.add(fas, faFontAwesome)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('vue-recaptcha', VueRecaptcha)
 Vue.use(abilitiesPlugin, ability)
+
+window.Pusher = require('pusher-js')
+
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  key: 'f7df117a7f335706d8de',
+  cluster: 'mt1',
+  forceTLS: true,
+  authEndpoint: 'http://blog.loc/broadcasting/auth',
+  auth: {
+    headers: {
+      Authorization: store.getters.get_token ? store.getters.get_token : null
+    }
+  }
+})
 
 Vue.config.productionTip = false
 
