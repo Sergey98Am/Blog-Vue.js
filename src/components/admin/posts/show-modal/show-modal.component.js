@@ -1,6 +1,6 @@
 export default {
   props: [
-    'posts'
+    'postOrPosts'
   ],
   data () {
     return {

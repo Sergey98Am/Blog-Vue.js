@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App'
+import App from './layouts/app/App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import VeeValidate from 'vee-validate'

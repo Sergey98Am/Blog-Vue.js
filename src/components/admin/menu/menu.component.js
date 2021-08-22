@@ -1,4 +1,5 @@
 import * as authService from '@/services/auth.service'
+import notifications from '@/components/admin/menu/notifications/Notifications.vue'
 
 export default {
   name: 'Menu',
@@ -6,6 +7,14 @@ export default {
     return {
       isToggled: false,
       toggleOnOff: false
+    }
+  },
+  components: {
+    'admin-notifications': notifications
+  },
+  computed: {
+    loggedIn () {
+      return this.$store.getters.get_loggedIn
     }
   },
   methods: {
@@ -20,7 +29,7 @@ export default {
       this.toggleOnOff = !this.toggleOnOff
     },
     LogoutRequest () {
-      this.isToggled = false;
+      this.isToggled = false
       authService.logout(this)
     }
   }

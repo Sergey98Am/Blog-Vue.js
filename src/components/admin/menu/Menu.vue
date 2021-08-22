@@ -1,20 +1,50 @@
 <template>
   <div class="menu">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg">
       <router-link to="/admin" class="navbar-brand">
         <b><i>Admin Panel</i></b>
       </router-link>
-      <button @click="toggle" class="navbar-toggler" type="button">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <ul class="navbar-nav ml-auto navbar-menu flex-row">
-        <li class="nav-item text-nowrap">
-          <router-link class="nav-link" to="/profile">Profile</router-link>
-        </li>
-        <li class="nav-item text-nowrap">
-          <a @click="LogoutRequest" class="nav-link">Logout</a>
-        </li>
-      </ul>
+      <div class="d-flex flex-row order-2 order-lg-3">
+        <ul class="navbar-nav flex-row">
+          <admin-notifications v-if="loggedIn && $store.getters.get_renderNotifications"></admin-notifications>
+          <li class="nav-item dropdown">
+            <a class="nav-link px-2 dropdown-toggle removed-dropdown-toggle" id="navbarDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" :aria-expanded="false">
+            <span class="icon">
+              <font-awesome-icon :icon="['fas', 'caret-square-down']"/>
+            </span>
+            </a>
+            <div v-if="loggedIn" class="dropdown-menu dropdown-menu-right in-not-hidden">
+              <router-link @click.native="isToggled = false" tag="button" class="dropdown-item" to="/profile">Profile
+              </router-link>
+              <button @click="LogoutRequest" class="dropdown-item">Logout</button>
+            </div>
+            <div v-else class="dropdown-menu dropdown-menu-right in-not-hidden">
+              <router-link @click.native="isToggled = false" tag="button" class="dropdown-item" to="/login">Login
+              </router-link>
+              <router-link @click.native="isToggled = false" tag="button" class="dropdown-item" to="/register">
+                Register
+              </router-link>
+            </div>
+          </li>
+        </ul>
+        <button @click="toggle" class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div :class="{ toggled: isToggled }" class="collapse navbar-collapse order-3 order-lg-2" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+<!--          <li class="nav-item active">-->
+<!--            <router-link @click.native="isToggled = false" class="nav-link" to="/">Home</router-link>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <router-link @click.native="isToggled = false" class="nav-link" to="/all-posts">Posts</router-link>-->
+<!--          </li>-->
+<!--          <li v-if="loggedIn" class="nav-item">-->
+<!--            <router-link @click.native="isToggled = false" class="nav-link" to="/posts">My Posts</router-link>-->
+<!--          </li>-->
+        </ul>
+      </div>
     </nav>
     <div class="sidebar" :class="{ toggled: isToggled }">
       <div class="sidebar-menu">
@@ -39,11 +69,13 @@
                 <font-awesome-icon :icon="['fas', 'unlock-alt']"/>
                 Permissions
               </router-link>
-              <router-link v-if="$can('role_access')" to="/admin/roles" @click.native="toggleDropdownItem" class="d-block">
+              <router-link v-if="$can('role_access')" to="/admin/roles" @click.native="toggleDropdownItem"
+                           class="d-block">
                 <font-awesome-icon :icon="['fas', 'suitcase']"/>
                 Roles
               </router-link>
-              <router-link v-if="$can('user_access')" to="/admin/users" @click.native="toggleDropdownItem" class="d-block">
+              <router-link v-if="$can('user_access')" to="/admin/users" @click.native="toggleDropdownItem"
+                           class="d-block">
                 <font-awesome-icon :icon="['fas', 'user']"/>
                 Users
               </router-link>
@@ -62,4 +94,4 @@
 </template>
 
 <script src="./menu.component.js"></script>
-<style src="./menu.css" scoped></style>
+<style src="./menu.css"></style>

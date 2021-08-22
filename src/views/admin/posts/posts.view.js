@@ -1,6 +1,7 @@
 import ModalPosts from '@/components/admin/posts/create-edit-modal/CreateEditModal.vue'
 import ShowPosts from '@/components/admin/posts/show-modal/ShowModal.vue'
-import * as postService from '@/services/admin/post.service'
+import * as adminPostService from '@/services/admin/post.service'
+import * as postService from '@/services/post.service'
 import * as Pagination from '@/pagination'
 
 export default {
@@ -10,7 +11,7 @@ export default {
       page: 1,
       pageCount: 0,
       pageSize: 4,
-      posts: []
+      postOrPosts: []
     }
   },
   components: {
@@ -19,7 +20,7 @@ export default {
   },
   computed: {
     displayedPosts () {
-      return Pagination.paginate(this, this.posts)
+      return Pagination.paginate(this, this.postOrPosts)
     }
   },
   mounted () {
@@ -33,13 +34,13 @@ export default {
       this.$refs['show-posts'].newModal(post)
     },
     getAllPosts () {
-      postService.allPosts(this)
+      adminPostService.allPosts(this)
     },
-    deletePost (target, id) {
-      postService.destroy(target, id, this)
+    deletePost (target, postId) {
+      postService.destroy(target, postId, this)
     },
     checkPost (target, post) {
-      postService.check(target, post)
+      adminPostService.check(target, post)
     }
   }
 }

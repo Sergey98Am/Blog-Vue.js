@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <modal-posts :posts="posts" ref="modal-posts"></modal-posts>
+    <modal-posts :postOrPosts="postOrPosts" ref="modal-posts"></modal-posts>
     <show-posts ref="show-posts"></show-posts>
   </div>
 </template>

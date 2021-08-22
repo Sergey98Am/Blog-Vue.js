@@ -16,6 +16,8 @@ import Permissions from '@/views/admin/user-management/permissions/Permissions.v
 import Roles from '@/views/admin/user-management/roles/Roles.vue'
 import Users from '@/views/admin/user-management/users/Users.vue'
 import AdminPosts from '@/views/admin/posts/Posts.vue'
+import AdminNotification from '@/views/admin/notifications/Notification.vue'
+import AdminPost from '@/views/admin/notifications/posts/Post.vue'
 
 Vue.use(Router)
 
@@ -118,6 +120,18 @@ const router = new Router({
           path: '/admin/posts',
           name: 'AdminPosts',
           component: AdminPosts
+        },
+        {
+          path: '/notification',
+          name: 'AdminNotification',
+          component: AdminNotification,
+          children: [
+            {
+              path: '/notification/notify_id/:notificationId/admin/post_id/:postId',
+              name: 'AdminPost',
+              component: AdminPost
+            }
+          ]
         }
       ]
     }
