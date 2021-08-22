@@ -1,8 +1,8 @@
-import * as postService from '@/services/admin/post.service'
+import * as postService from '@/services/post.service'
 
 export default {
   props: [
-    'posts'
+    'postOrPosts'
   ],
   data () {
     return {

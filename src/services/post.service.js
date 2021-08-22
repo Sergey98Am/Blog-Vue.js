@@ -73,6 +73,7 @@ function create (target, self) {
 }
 
 function update (target, self) {
+  console.log(self.postOrPosts)
   self.$validator.validateAll().then((result) => {
     if (result) {
       // Loader
@@ -90,6 +91,7 @@ function update (target, self) {
       formData.append('title', self.title)
       formData.append('description', self.description)
       authAxios.post('/posts/' + self.id, formData).then(response => {
+        console.log(response)
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
@@ -165,6 +167,7 @@ function post (self) {
     post.title = result.title
     post.description = result.description
     post.checked = result.checked
+    post.user = result.user
   }).catch(error => error)
 }
 
