@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script src="./post.js"></script>
+<script src="./post.component.js"></script>
 <style scoped>
 .card img {
   width: 100%;
