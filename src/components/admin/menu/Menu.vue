@@ -33,17 +33,7 @@
         </button>
       </div>
       <div :class="{ toggled: isToggled }" class="collapse navbar-collapse order-3 order-lg-2" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-<!--          <li class="nav-item active">-->
-<!--            <router-link @click.native="isToggled = false" class="nav-link" to="/">Home</router-link>-->
-<!--          </li>-->
-<!--          <li class="nav-item">-->
-<!--            <router-link @click.native="isToggled = false" class="nav-link" to="/all-posts">Posts</router-link>-->
-<!--          </li>-->
-<!--          <li v-if="loggedIn" class="nav-item">-->
-<!--            <router-link @click.native="isToggled = false" class="nav-link" to="/posts">My Posts</router-link>-->
-<!--          </li>-->
-        </ul>
+        <ul class="navbar-nav mr-auto"></ul>
       </div>
     </nav>
     <div class="sidebar" :class="{ toggled: isToggled }">
