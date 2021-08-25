@@ -1,24 +1,16 @@
 import ShowModal from '@/components/user/posts/show-modal/ShowModal'
 import * as postService from '@/services/post.service'
-import * as Pagination from '@/pagination'
+import axios from 'axios'
 
 export default {
   data () {
     return {
       isLoading: false,
-      page: 1,
-      pageCount: 0,
-      pageSize: 4,
-      postOrPosts: []
+      posts: {}
     }
   },
   components: {
     'show-modal': ShowModal
-  },
-  computed: {
-    displayedPosts () {
-      return Pagination.paginate(this, this.postOrPosts)
-    }
   },
   mounted () {
     this.getAllPosts()
@@ -32,6 +24,12 @@ export default {
     },
     saveLike (target, post) {
       postService.saveLike(target, post, this)
+    },
+    getResults (page = 1) {
+      axios.get('http://blog.loc/api/all-posts/?page=' + page)
+        .then(response => {
+          this.posts = response.data.posts
+        })
     }
   }
 }

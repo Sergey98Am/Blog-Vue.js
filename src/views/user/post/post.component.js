@@ -31,6 +31,7 @@ export default {
       PostService.post(this)
     },
     editModal (post) {
+      this.$store.dispatch('onePostIsTrue')
       this.$refs['modal-posts'].editModal(post)
     },
     showModal (post) {

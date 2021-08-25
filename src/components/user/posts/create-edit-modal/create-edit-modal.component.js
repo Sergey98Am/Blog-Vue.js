@@ -44,6 +44,10 @@ export default {
       this.description = ''
       this.imagePreview = ''
       this.$refs['hidden-button'].value = ''
+      let onePost = this.$store.getters.get_one_post
+      if (onePost) {
+        this.$store.dispatch('onePostIsFalse')
+      }
     },
 
     // Validation

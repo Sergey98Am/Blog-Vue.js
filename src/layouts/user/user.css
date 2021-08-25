@@ -73,23 +73,7 @@ input:focus {
   box-shadow: none !important;
 }
 
-.pagination > .active > a {
-  background: #08162d;
-  color: #ffffff !important;
-}
-
-.pagination > li > a {
-  display: block;
-  padding: 6px 12px;
-  background: #2e415e;
-  color: #ffffff !important;
-  text-decoration: none;
-  outline: none;
-}
-
-.pagination > .active > a:hover {
-  font-weight: bold;
-}.is-invalid {
+.is-invalid {
    border-color: #dc3545 !important;
  }
 
@@ -162,20 +146,12 @@ input:focus {
   box-shadow: none !important;
 }
 
-.pagination > .active > a {
-  background: #ffffff;
-  color: #000000 !important;
+.page-item.active .page-link  {
+  background-color: #0fcd0f;
+  border-color: white;
+  color: white !important;
 }
 
-.pagination > li > a {
-  display: block;
-  padding: 6px 12px;
-  background: #000000;
-  color: #ffffff !important;
-  text-decoration: none;
-  outline: none;
-}
-
-.pagination > .active > a:hover {
-  font-weight: bold;
+.page-link {
+  color: #0fcd0f !important;
 }

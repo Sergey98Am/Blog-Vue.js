@@ -11,7 +11,7 @@
         </div>
         <div v-else class="col-12">
           <div class="row">
-            <div v-for="post in displayedPosts" :key="post.id" class="col-12 col-sm-6 col-md-12 col-lg-8 offset-lg-2">
+            <div v-for="post in posts.data" :key="post.id" class="col-12 col-sm-6 col-md-12 col-lg-8 offset-lg-2">
               <div class="card">
                 <div class="row no-gutters">
                   <div class="col-md-4">
@@ -29,7 +29,7 @@
                         <button :style="post.liked_by_auth_user ? 'color: green' : 'color: red'" @click="saveLike($event.target, post)">
                           <span class="icon"><font-awesome-icon :icon="['fas', 'thumbs-up']"/></span>
                         </button>
-                        <span>( {{ post.likes.length }} )</span>
+                        <span>({{ post.likes.length }})</span>
                       </div>
                       <div v-else class="like-system">
                         <button style="color: grey; cursor: default">
@@ -45,10 +45,7 @@
           </div>
         </div>
         <div class="col-12 col-sm-6 col-md-12 col-lg-8 offset-lg-2">
-          <paginate v-model="page" :page-count="pageCount" :page-range="3"
-                    :margin-pages="1" :prev-text="'Prev'" :next-text="'Next'"
-                    :container-class="'pagination'" :page-class="'page-item'"
-                    :hide-prev-next="true"></paginate>
+          <pagination :limit="2" :data="posts" @pagination-change-page="getResults"></pagination>
         </div>
       </div>
     </div>
