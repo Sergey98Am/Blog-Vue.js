@@ -1,5 +1,6 @@
 import authAxios from '../../config/authAxios'
 import * as postOrPosts from '@/services/postOrPosts/post-or-posts'
+import axios from 'axios'
 
 function validation () {
   return {
@@ -73,7 +74,6 @@ function create (target, self) {
 }
 
 function update (target, self) {
-  console.log(self.postOrPosts)
   self.$validator.validateAll().then((result) => {
     if (result) {
       // Loader
@@ -91,13 +91,17 @@ function update (target, self) {
       formData.append('title', self.title)
       formData.append('description', self.description)
       authAxios.post('/posts/' + self.id, formData).then(response => {
-        console.log(response)
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
-        self.closeModal()
-        let post = postOrPosts.PostOrPostsUpdate(self.postOrPosts, response)
+        let onePost = self.$store.getters.get_one_post
+        let post
+        if (onePost) {
+          post = self.postOrPosts
+        } else {
+          post = self.postOrPosts.find(post => post.id === response.data.updatedPost.id)
+        }
         if (self.$refs['hidden-button'].files[0]) {
           post.image = response.data.updatedPost.image
         }
@@ -106,6 +110,7 @@ function update (target, self) {
         post.checked = response.data.updatedPost.checked
         post.edited = response.data.updatedPost.edited
         post.updated_at = response.data.updatedPost.updated_at
+        self.closeModal()
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -126,15 +131,15 @@ function destroy (target, postId, self) {
     self.$store.dispatch('notificationsLastId')
     self.$store.dispatch('getUnreadNotificationsCount')
     self.$store.dispatch('postNotifications', {postId: postId})
-    return postOrPosts.PostOrPostsDelete(self, self.postOrPosts, response)
+    return postOrPosts.PostOrPostsDelete(self, self.posts, response)
   }).catch(error => error)
 }
 
 function allPosts (self) {
   self.isLoading = true
-  authAxios.get('/all-posts').then(response => {
+  axios.get('http://blog.loc/api/all-posts').then(response => {
     self.isLoading = false
-    self.postOrPosts = response.data.posts
+    self.posts = response.data.posts
   }).catch(() => {
     self.isLoading = false
   })

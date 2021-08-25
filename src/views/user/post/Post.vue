@@ -36,7 +36,7 @@
                 </span>
                 Not checked
               </p>
-              <span v-if="postOrPosts.edited" class="edited"><b>Edited: {{ post.updated_at }}</b></span>
+              <span v-if="postOrPosts.edited" class="edited"><b>Edited: {{ postOrPosts.updated_at }}</b></span>
             </div>
           </div>
         </div>

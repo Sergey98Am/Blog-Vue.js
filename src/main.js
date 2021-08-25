@@ -16,6 +16,7 @@ import {abilitiesPlugin} from '@casl/vue'
 import ability from '../config/ability'
 import Echo from 'laravel-echo'
 
+Vue.component('pagination', require('laravel-vue-pagination'))
 Vue.use(VeeValidate, {
   events: ''
 })
