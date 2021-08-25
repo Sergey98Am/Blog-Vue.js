@@ -2,27 +2,19 @@ import CreateEditModal from '@/components/user/posts/create-edit-modal/CreateEdi
 import ShowModal from '@/components/user/posts/show-modal/ShowModal.vue'
 import ForceUpdate from '@/components/forceUpdate.vue'
 import * as postService from '@/services/post.service'
-import * as Pagination from '@/pagination'
+import authAxios from '../../../../config/authAxios'
 
 export default {
   data () {
     return {
       isLoading: false,
-      page: 1,
-      pageCount: 0,
-      pageSize: 4,
-      postOrPosts: []
+      posts: {}
     }
   },
   components: {
     'create-edit-modal': CreateEditModal,
     'show-modal': ShowModal,
     'force-update': ForceUpdate
-  },
-  computed: {
-    displayedPosts () {
-      return Pagination.paginate(this, this.postOrPosts)
-    }
   },
   mounted () {
     this.getPosts()
@@ -42,6 +34,12 @@ export default {
     },
     deletePost (target, postId) {
       postService.destroy(target, postId, this)
+    },
+    getResults (page = 1) {
+      authAxios.get('/posts?page=' + page)
+        .then(response => {
+          this.posts = response.data.posts
+        })
     }
   }
 }

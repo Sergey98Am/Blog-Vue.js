@@ -26,7 +26,7 @@ export default {
       postService.saveLike(target, post, this)
     },
     getResults (page = 1) {
-      axios.get('http://blog.loc/api/all-posts/?page=' + page)
+      axios.get('http://blog.loc/api/all-posts?page=' + page)
         .then(response => {
           this.posts = response.data.posts
         })

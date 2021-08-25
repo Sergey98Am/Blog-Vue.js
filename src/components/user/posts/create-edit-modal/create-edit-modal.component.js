@@ -2,7 +2,8 @@ import * as postService from '@/services/post.service'
 
 export default {
   props: [
-    'postOrPosts'
+    'postOrPosts',
+    'getResults'
   ],
   data () {
     return {

@@ -1,5 +1,5 @@
 import authAxios from '../../config/authAxios'
-import * as postOrPosts from '@/services/postOrPosts/post-or-posts'
+// import * as postOrPosts from '@/services/postOrPosts/post-or-posts'
 import axios from 'axios'
 
 function validation () {
@@ -33,7 +33,7 @@ function get (self) {
   self.isLoading = true
   authAxios.get('/posts').then(response => {
     self.isLoading = false
-    self.postOrPosts = response.data.posts
+    self.posts = response.data.posts
   }).catch(() => {
     self.isLoading = false
   })
@@ -42,7 +42,8 @@ function get (self) {
 function create (target, self) {
   self.$validator.validateAll().then((result) => {
     if (result) {
-      let posts = self.postOrPosts
+      let posts = self.postOrPosts.data
+      console.log(posts)
       // Loader
       let loader = target.querySelector('.create-loader')
       let icon = target.querySelector('.icon')
@@ -53,15 +54,15 @@ function create (target, self) {
       formData.append('image', self.image)
       formData.append('title', self.title)
       formData.append('description', self.description)
-      authAxios.post('/posts', formData).then(response => {
+      authAxios.post('/posts', formData).then(() => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
+        // let newPost = response.data.createdPost
+        // posts.unshift(newPost)
         self.closeModal()
-        self.page = 1
-        let newPost = response.data.createdPost
-        posts.unshift(newPost)
+        self.getResults(1)
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -100,7 +101,7 @@ function update (target, self) {
         if (onePost) {
           post = self.postOrPosts
         } else {
-          post = self.postOrPosts.find(post => post.id === response.data.updatedPost.id)
+          post = self.postOrPosts.data.find(post => post.id === response.data.updatedPost.id)
         }
         if (self.$refs['hidden-button'].files[0]) {
           post.image = response.data.updatedPost.image
@@ -131,7 +132,23 @@ function destroy (target, postId, self) {
     self.$store.dispatch('notificationsLastId')
     self.$store.dispatch('getUnreadNotificationsCount')
     self.$store.dispatch('postNotifications', {postId: postId})
-    return postOrPosts.PostOrPostsDelete(self, self.posts, response)
+    let onePost = self.$store.getters.get_one_post
+    if (onePost) {
+      self.$router.push('/')
+    } else {
+      let posts = self.posts
+      let postsData = self.posts.data
+      let post
+      for (post in postsData) {
+        if (postsData[post].id === response.data.deletedPost.id) {
+          postsData.splice(post, 1)
+        }
+      }
+      if (postsData.length === 0) {
+        let page = posts.current_page - 1
+        self.getResults(page)
+      }
+    }
   }).catch(error => error)
 }
 
