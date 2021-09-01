@@ -3,24 +3,36 @@
 }
 
 .card {
+  padding: 15px;
   transition: box-shadow .3s;
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  border-radius: 35px;
+  background: transparent;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 30px;
   overflow: hidden;
   margin-bottom: 10px;
+  border: 2px solid white;
 }
 
 .card:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.4);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+}
+
+.card-body {
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.4);
+  margin-top: 10px;
 }
 
 .card img {
   width: 100%;
-  height: 240px;
+  height: 200px;
   object-fit: cover;
+  border-radius: inherit;
 }
 
-.card-text {
+.line-clamp {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -32,6 +44,7 @@
 }
 
 .like-system button {
+  padding-top: 10px;
   border: none;
   background: none;
   font-size: 18px;

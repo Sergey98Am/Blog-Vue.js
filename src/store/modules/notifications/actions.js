@@ -17,35 +17,43 @@ export default {
       commit('SET_count', response.data.count)
     }).catch(error => error)
   },
-  echo ({commit, rootState}) {
-    let userId = rootState.user.user.id
-    window.Echo.private('App.Models.User.' + userId).notification((notification) => {
-      console.log(notification)
-      let unread = {
-        uuid: notification.id,
-        read_at: null,
-        data: {url: notification.url, text: notification.text},
-        post_id: notification.post_id
-      }
-      commit('SET_notification', unread)
-      commit('increment_count')
-    })
+  echo ({commit}, payload) {
+    let notification = payload.notification
+    let unread = {
+      uuid: notification.id,
+      read_at: null,
+      data: {url: notification.url, text: notification.text},
+      post_id: notification.post_id,
+      created_at: notification.created_at
+    }
+    commit('SET_notification', unread)
+    commit('increment_count')
   },
   markAllAsRead ({commit, state}) {
-    if (state.count) {
-      authAxios.get('/mark-all-as-read').then(() => {
-        commit('allAsRead')
-      }).catch(error => error)
-    }
+    return new Promise((resolve, reject) => {
+      if (state.count) {
+        authAxios.get('/mark-all-as-read').then(() => {
+          commit('allAsRead')
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      }
+    })
   },
   markAsRead ({commit, state}, payload) {
-    let self = payload.self
-    let notificationId = payload.notificationId
-    let url = payload.url
-    authAxios.get('/mark-as-read/' + notificationId).then(() => {
-      commit('asRead', notificationId)
-      self.$router.push(url)
-    }).catch(error => error)
+    return new Promise((resolve, reject) => {
+      let self = payload.self
+      let notificationId = payload.notificationId
+      let url = payload.url
+      authAxios.get('/mark-as-read/' + notificationId).then(() => {
+        commit('asRead', notificationId)
+        self.$router.push(url)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
   },
   loadMore ({commit, state}) {
     let formData = new FormData()

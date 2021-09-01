@@ -15,6 +15,11 @@ import VueSpinners from 'vue-spinners'
 import {abilitiesPlugin} from '@casl/vue'
 import ability from '../config/ability'
 import Echo from 'laravel-echo'
+import VueTimeago from 'vue-timeago'
+
+Vue.use(VueTimeago, {
+  name: 'Timeago'
+})
 
 Vue.component('pagination', require('laravel-vue-pagination'))
 Vue.use(VeeValidate, {
@@ -34,7 +39,8 @@ window.Echo = new Echo({
   broadcaster: 'pusher',
   key: 'f7df117a7f335706d8de',
   cluster: 'mt1',
-  forceTLS: true,
+  forceTLS: false,
+  disableStats: true,
   authEndpoint: 'http://blog.loc/broadcasting/auth',
   auth: {
     headers: {
