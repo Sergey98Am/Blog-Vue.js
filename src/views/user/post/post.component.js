@@ -5,7 +5,7 @@ import * as PostService from '@/services/post.service'
 export default {
   data () {
     return {
-      postOrPosts: {
+      post: {
         id: '',
         image: '',
         title: '',

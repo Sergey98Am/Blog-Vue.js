@@ -4,7 +4,7 @@
       <div class="row">
         <div v-if="isLoading" class="col-12">
           <div class="loading">
-            <div class="spinner-grow text-dark" role="status">
+            <div class="spinner-grow text-white" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
@@ -13,16 +13,19 @@
           <div class="row">
             <div class="col-12">
               <div class="create-post">
-                <force-update :forceUpdate="getPosts"></force-update>
-                <button @click="openModal" class="btn btn-light">Create post</button>
+                <!--                <force-update :forceUpdate="getPosts"></force-update>-->
+                <button @click="openModal" class="btn btn-light">
+                  <font-awesome-icon :icon="['fas', 'plus']"/>
+                  Create post
+                </button>
               </div>
             </div>
-            <div v-for="post in posts.data" :key="post.id" class="col-12 col-sm-6 col-xl-3">
+            <div v-for="post in posts.data" :key="post.id" class="col-12 col-sm-6 col-xl-4">
               <div class="card">
                 <img :src="'http://blog.loc/images/' + post.image" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">{{ post.title }}</h5>
-                  <p class="card-text">{{ post.description }}</p>
+                  <h5 class="card-title line-clamp">{{ post.title }}</h5>
+                  <p class="card-text line-clamp">{{ post.description }}</p>
                   <div class="actions">
                     <button @click="editModal(post)" class="btn btn-primary">
                       <font-awesome-icon :icon="['fas', 'edit']"/>
@@ -55,10 +58,10 @@
                 </div>
               </div>
             </div>
+            <div class="col-12">
+              <pagination :limit="2" :data="posts" @pagination-change-page="getResults"></pagination>
+            </div>
           </div>
-        </div>
-        <div class="col-12">
-          <pagination :limit="2" :data="posts" @pagination-change-page="getResults"></pagination>
         </div>
       </div>
     </div>

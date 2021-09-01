@@ -16,8 +16,7 @@
 }
 
 .user {
-  margin-top: 57px;
-  padding: 50px 0;
+  padding: 100px 0;
   min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../../assets/images/background.jpg');
   background-size: cover;
@@ -74,8 +73,8 @@ input:focus {
 }
 
 .is-invalid {
-   border-color: #dc3545 !important;
- }
+  border-color: #dc3545 !important;
+}
 
 .loading {
   display: flex;
@@ -88,13 +87,6 @@ input:focus {
   width: 15px;
   height: 15px;
   display: none;
-}
-
-.user {
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../../assets/images/background.jpg');
-  background-size: cover;
-  background-attachment: fixed;
 }
 
 .modal {
@@ -147,11 +139,11 @@ input:focus {
 }
 
 .page-item.active .page-link  {
-  background-color: #0fcd0f;
+  background-color: #6a6fc5;
   border-color: white;
   color: white !important;
 }
 
 .page-link {
-  color: #0fcd0f !important;
+  color: #6a6fc5 !important;
 }

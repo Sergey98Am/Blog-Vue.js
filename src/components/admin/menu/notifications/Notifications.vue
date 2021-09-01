@@ -23,4 +23,4 @@
   </li>
 </template>
 
-<script src="../../../notifications/notifications.component.js"></script>
+<script src="./notifications.component.js"></script>

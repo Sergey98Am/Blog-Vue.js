@@ -1,6 +1,4 @@
 import authAxios from '../../config/authAxios'
-// import * as postOrPosts from '@/services/postOrPosts/post-or-posts'
-import axios from 'axios'
 
 function validation () {
   return {
@@ -154,7 +152,7 @@ function destroy (target, postId, self) {
 
 function allPosts (self) {
   self.isLoading = true
-  axios.get('http://blog.loc/api/all-posts').then(response => {
+  authAxios.get('http://blog.loc/api/all-posts').then(response => {
     self.isLoading = false
     self.posts = response.data.posts
   }).catch(() => {
@@ -182,7 +180,7 @@ function saveLike (target, post) {
 function post (self) {
   let postId = self.$route.params.postId
   authAxios.get('/post/' + postId).then(response => {
-    let post = self.postOrPosts
+    let post = self.post
     let result = response.data
     post.id = result.id
     post.image = result.image

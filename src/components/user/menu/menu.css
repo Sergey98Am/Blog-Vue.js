@@ -1,5 +1,6 @@
 .navbar {
-  background: #393939;
+  background-color: #6a6fc5;
+  border-bottom: 5px solid white;
 }
 
 a {
@@ -8,8 +9,6 @@ a {
 
 button {
   border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
 }
 
 .profile-button {
@@ -66,5 +65,15 @@ button {
 }
 
 .icon {
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.dropdown-item span {
+  display: block;
+}
+
+.created_at {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #4e555b;
 }
