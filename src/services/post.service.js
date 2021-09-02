@@ -40,8 +40,6 @@ function get (self) {
 function create (target, self) {
   self.$validator.validateAll().then((result) => {
     if (result) {
-      let posts = self.postOrPosts.data
-      console.log(posts)
       // Loader
       let loader = target.querySelector('.create-loader')
       let icon = target.querySelector('.icon')

@@ -24,7 +24,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="permission in displayedPermissions" :key="permission.id">
+                <tr v-for="permission in permissions.data" :key="permission.id">
                   <td>{{ permission.title }}</td>
                   <td class="actions">
                     <button v-if="$can('permission_edit')" type="button" class="edit" @click="editModal(permission)">
@@ -49,14 +49,11 @@
           </div>
         </div>
         <div class="col-12">
-          <paginate v-model="page" :page-count="pageCount" :page-range="3"
-                    :margin-pages="1" :prev-text="'Prev'" :next-text="'Next'"
-                    :container-class="'pagination'" :page-class="'page-item'"
-                    :hide-prev-next="true"></paginate>
+          <pagination :limit="2" :data="permissions" @pagination-change-page="getResults"></pagination>
         </div>
       </div>
     </div>
-    <modal :permissions="permissions" ref="permissions-modal"></modal>
+    <modal :permissions="permissions" :getResults="getResults" ref="permissions-modal"></modal>
   </div>
 </template>
 
