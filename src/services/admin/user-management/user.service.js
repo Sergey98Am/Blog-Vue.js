@@ -65,10 +65,11 @@ function create (target, self) {
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
+        // self.page = 1
+        // let newUser = response.data.user
+        // self.users.unshift(newUser)
         self.closeModal()
-        self.page = 1
-        let newUser = response.data.user
-        self.users.unshift(newUser)
+        self.getResults(1)
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -100,8 +101,9 @@ function update (target, self) {
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
+        let users = self.users.data
         let user
-        for (user of self.users) {
+        for (user of users) {
           if (user.id === response.data.user.id) {
             Object.keys(user).forEach(function (item) {
               user[item] = response.data.user[item]
@@ -125,11 +127,17 @@ function destroy (target, id, self) {
   target.querySelector('.icon').style.display = 'none'
   // End Loader
   authAxios.delete('/admin/users/' + id).then(response => {
+    let users = self.users
+    let usersData = self.users.data
     let user
-    for (user in self.users) {
-      if (self.users[user].id === response.data.user.id) {
-        self.users.splice(user, 1)
+    for (user in usersData) {
+      if (usersData[user].id === response.data.user.id) {
+        usersData.splice(user, 1)
       }
+    }
+    if (usersData.length === 0) {
+      let page = users.current_page - 1
+      self.getResults(page)
     }
   }).catch(error => error)
 }
