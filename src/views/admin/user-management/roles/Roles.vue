@@ -25,7 +25,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="role in displayedRoles" :key="role.id">
+                <tr v-for="role in roles.data" :key="role.id">
                   <td>{{ role.title }}</td>
                   <td class="permissions">
                 <span v-for="permission in role.permissions" :key="permission.id">
@@ -56,14 +56,11 @@
           </div>
         </div>
         <div class="col-12">
-          <paginate v-model="page" :page-count="pageCount" :page-range="3"
-                    :margin-pages="1" :prev-text="'Prev'" :next-text="'Next'"
-                    :container-class="'pagination'" :page-class="'page-item'"
-                    :hide-prev-next="true"></paginate>
+          <pagination :limit="2" :data="roles" @pagination-change-page="getResults"></pagination>
         </div>
       </div>
     </div>
-    <modal :roles="roles" :permissions="permissions" ref="roles-modal"></modal>
+    <modal :roles="roles" :permissions="permissions" :getResults="getResults" ref="roles-modal"></modal>
   </div>
 </template>
 
@@ -83,7 +80,7 @@
   padding: 5px 10px;
   border-radius: 20px;
   margin: 3px;
-  background: #3b3b40;
+  background: #6a6fc5;
   color: #ffffff;
   font-size: 13px;
 }

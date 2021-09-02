@@ -47,10 +47,11 @@ function create (target, self) {
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
+        // self.page = 1
+        // let newRole = response.data.role
+        // self.roles.unshift(newRole)
         self.closeModal()
-        self.page = 1
-        let newRole = response.data.role
-        self.roles.unshift(newRole)
+        self.getResults(1)
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -84,7 +85,8 @@ function update (target, self) {
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
-        let role = self.roles.find(role => role.id === response.data.role.id)
+        let roles = self.roles.data
+        let role = roles.find(role => role.id === response.data.role.id)
         role.title = response.data.role.title
         role.permissions = response.data.role.permissions
       }).catch(error => {
@@ -104,11 +106,17 @@ function destroy (target, id, self) {
   target.querySelector('.icon').style.display = 'none'
   // End Loader
   authAxios.delete('/admin/roles/' + id).then(response => {
+    let roles = self.roles
+    let rolesData = self.roles.data
     let role
-    for (role in self.roles) {
-      if (self.roles[role].id === response.data.role.id) {
-        self.roles.splice(role, 1)
+    for (role in rolesData) {
+      if (rolesData[role].id === response.data.role.id) {
+        rolesData.splice(role, 1)
       }
+    }
+    if (rolesData.length === 0) {
+      let page = roles.current_page - 1
+      self.getResults(page)
     }
   }).catch(error => error)
 }

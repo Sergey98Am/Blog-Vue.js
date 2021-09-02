@@ -3,7 +3,8 @@ import * as roleService from '@/services/admin/user-management/role.service'
 export default {
   props: [
     'roles',
-    'permissions'
+    'permissions',
+    'getResults'
   ],
   data () {
     return {
