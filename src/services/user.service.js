@@ -50,9 +50,9 @@ function changeDetails (self, user) {
         setTimeout(function () {
           message.style.display = 'none'
         }, 2000)
-      }).catch(error => {
+      }).catch(() => {
         self.isLoading = false
-        userServerSideValidation(self, error)
+        // userServerSideValidation(self, error)
       })
     }
   })
