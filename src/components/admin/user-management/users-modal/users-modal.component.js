@@ -3,7 +3,8 @@ import * as userService from '@/services/admin/user-management/user.service'
 export default {
   props: [
     'users',
-    'roles'
+    'roles',
+    'getResults'
   ],
   data () {
     return {

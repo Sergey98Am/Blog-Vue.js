@@ -26,7 +26,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="user in displayedUsers" :key="user.id">
+                <tr v-for="user in users.data" :key="user.id">
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.role.title }}</td>
@@ -54,14 +54,11 @@
           </div>
         </div>
         <div class="col-12">
-          <paginate v-model="page" :page-count="pageCount" :page-range="3"
-                    :margin-pages="1" :prev-text="'Prev'" :next-text="'Next'"
-                    :container-class="'pagination'" :page-class="'page-item'"
-                    :hide-prev-next="true"></paginate>
+          <pagination :limit="2" :data="users" @pagination-change-page="getResults"></pagination>
         </div>
       </div>
     </div>
-    <modal :users="users" :roles="roles" ref="users-modal"></modal>
+    <modal :users="users" :roles="roles" :getResults="getResults" ref="users-modal"></modal>
   </div>
 </template>
 
