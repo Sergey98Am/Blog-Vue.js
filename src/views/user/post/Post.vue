@@ -49,29 +49,6 @@
 
 <script src="./post.component.js"></script>
 <style scoped>
-.card {
-  padding: 15px;
-  transition: box-shadow .3s;
-  background: transparent;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 30px;
-  overflow: hidden;
-  margin-bottom: 10px;
-  border: 2px solid white;
-}
-
-.card:hover {
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
-}
-
-.card-body {
-  border-radius: inherit;
-  background: rgba(255, 255, 255, 0.4);
-  margin-top: 10px;
-}
-
 .card img {
   width: 100%;
   height: 200px;

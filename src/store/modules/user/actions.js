@@ -51,7 +51,8 @@ export default {
     })
   },
 
-  changeDetailsAction ({ commit, payload }) {
+  changeDetailsAction ({ commit }, payload) {
+    console.log(payload)
     return new Promise((resolve, reject) => {
       let formData = new FormData()
       formData.append('name', payload.name)
