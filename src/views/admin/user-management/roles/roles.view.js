@@ -1,6 +1,6 @@
 import rolesModal from '@/components/admin/user-management/roles-modal/RolesModal.vue'
 import * as roleService from '@/services/admin/user-management/role.service'
-import * as Pagination from '@/pagination'
+import authAxios from '../../../../../config/authAxios'
 
 export default {
   data () {
@@ -9,17 +9,12 @@ export default {
       page: 1,
       pageCount: 0,
       pageSize: 4,
-      roles: [],
+      roles: {},
       permissions: []
     }
   },
   components: {
     'modal': rolesModal
-  },
-  computed: {
-    displayedRoles () {
-      return Pagination.paginate(this, this.roles)
-    }
   },
   mounted () {
     this.getRoles()
@@ -36,6 +31,12 @@ export default {
     },
     deleteRole (target, id) {
       roleService.destroy(target, id, this)
+    },
+    getResults (page = 1) {
+      authAxios.get('/admin/roles?page=' + page)
+        .then(response => {
+          this.roles = response.data.roles
+        })
     }
   }
 }
