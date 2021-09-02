@@ -24,7 +24,7 @@ export default {
       read_at: null,
       data: {url: notification.url, text: notification.text},
       post_id: notification.post_id,
-      created_at: notification.created_at
+      created_at: Date.now()
     }
     commit('SET_notification', unread)
     commit('increment_count')

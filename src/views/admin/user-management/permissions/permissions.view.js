@@ -1,6 +1,6 @@
 import permissionsModal from '@/components/admin/user-management/permissions-modal/PermissionsModal.vue'
 import * as permissionService from '@/services/admin/user-management/permission.service'
-import * as Pagination from '../../../../pagination'
+import authAxios from '../../../../../config/authAxios'
 
 export default {
   data () {
@@ -9,16 +9,11 @@ export default {
       page: 1,
       pageCount: 0,
       pageSize: 4,
-      permissions: []
+      permissions: {}
     }
   },
   components: {
     'modal': permissionsModal
-  },
-  computed: {
-    displayedPermissions () {
-      return Pagination.paginate(this, this.permissions)
-    }
   },
   mounted () {
     this.getPermissions()
@@ -35,6 +30,12 @@ export default {
     },
     deletePermission (target, id) {
       permissionService.destroy(target, id, this)
+    },
+    getResults (page = 1) {
+      authAxios.get('/admin/permissions?page=' + page)
+        .then(response => {
+          this.permissions = response.data.permissions
+        })
     }
   }
 }

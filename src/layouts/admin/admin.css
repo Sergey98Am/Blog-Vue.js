@@ -3,7 +3,7 @@
 }
 
 .admin {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../assets/images/admin-background.jpg');
+  background: whitesmoke;
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
@@ -53,7 +53,7 @@ label {
   border: 2px solid #ffffff;
   border-radius: 7px;
   margin-bottom: 10px;
-  background: #3b3b40;
+  background: #6a6fc5;
   color: #ffffff;
   font-weight: bold;
 }
@@ -145,12 +145,12 @@ input:read-only {
 }
 
 thead {
-  background: #3b3b40;
+  background: #6a6fc5;
   color: #ffffff;
 }
 
 tbody {
-  background: #eae7e2;
+  background: white;
   color: #3b3b40;
   font-weight: 600;
 }
@@ -164,7 +164,7 @@ tbody {
 }
 
 .edit {
-  background: #3b3b40;
+  background: #6a6fc5;
   color: #ffffff;
 }
 

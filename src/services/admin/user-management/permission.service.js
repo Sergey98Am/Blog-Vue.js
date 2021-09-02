@@ -43,10 +43,11 @@ function create (target, self) {
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
         // End Loader
+        // self.page = 1
+        // let newPermission = response.data.permission
+        // self.permissions.unshift(newPermission)
         self.closeModal()
-        self.page = 1
-        let newPermission = response.data.permission
-        self.permissions.unshift(newPermission)
+        self.getResults(1)
       }).catch(error => {
         // Loader
         loader.style.display = 'none'
@@ -77,7 +78,8 @@ function update (target, self) {
         icon.style.display = 'inline-block'
         // End Loader
         self.closeModal()
-        let permission = self.permissions.find(permission => permission.id === response.data.permission.id)
+        let permissions = self.permissions.data
+        let permission = permissions.find(permission => permission.id === response.data.permission.id)
         permission.title = response.data.permission.title
       }).catch(error => {
         // Loader
@@ -96,11 +98,17 @@ function destroy (target, id, self) {
   target.querySelector('.icon').style.display = 'none'
   // End Loader
   authAxios.delete('/admin/permissions/' + id).then(response => {
+    let permissions = self.permissions
+    let permissionsData = self.permissions.data
     let permission
-    for (permission in self.permissions) {
-      if (self.permissions[permission].id === response.data.permission.id) {
-        self.permissions.splice(permission, 1)
+    for (permission in permissionsData) {
+      if (permissionsData[permission].id === response.data.permission.id) {
+        permissionsData.splice(permission, 1)
       }
+    }
+    if (permissionsData.length === 0) {
+      let page = permissions.current_page - 1
+      self.getResults(page)
     }
   }).catch(error => error)
 }

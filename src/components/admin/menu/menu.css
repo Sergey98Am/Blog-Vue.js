@@ -8,7 +8,7 @@
   padding: 5px 15px;
   border-bottom: 1px solid white;
   margin-bottom: 0;
-  background: #242424;
+  background: #6a6fc5;
 }
 
 .navbar-brand {
@@ -27,7 +27,7 @@
   bottom: 0;
   width: 250px;
   padding: 60px 0 0;
-  background: #242424;
+  background: #6a6fc5;
   transition: 0.5s;
 }
 

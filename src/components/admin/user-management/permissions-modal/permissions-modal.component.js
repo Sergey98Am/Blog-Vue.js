@@ -2,7 +2,8 @@ import * as permissionService from '@/services/admin/user-management/permission.
 
 export default {
   props: [
-    'permissions'
+    'permissions',
+    'getResults'
   ],
   data () {
     return {
