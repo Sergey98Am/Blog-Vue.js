@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <div class="login-form">
+          <div class="auth login-form">
             <div class="form-group">
               <label for="email">Email</label>
               <input type="text" class="form-control"
