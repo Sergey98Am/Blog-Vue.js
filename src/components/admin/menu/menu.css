@@ -96,5 +96,15 @@
 }
 
 .icon {
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.dropdown-item span {
+  display: block;
+}
+
+.created_at {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #4e555b;
 }
