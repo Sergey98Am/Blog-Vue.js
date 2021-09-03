@@ -24,6 +24,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('onePostIsTrue')
     this.onePost()
   },
   methods: {
@@ -38,7 +39,9 @@ export default {
       this.$refs['show-posts'].newModal(post)
     },
     deletePost (target, id) {
-      PostService.destroy(target, id, this)
+      let url = `/posts/${id}`
+      let redirectUrl = '/'
+      PostService.destroy(target, id, url, redirectUrl, this)
     }
   }
 }

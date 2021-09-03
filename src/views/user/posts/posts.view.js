@@ -17,6 +17,7 @@ export default {
     'force-update': ForceUpdate
   },
   mounted () {
+    this.$store.dispatch('onePostIsFalse')
     this.getPosts()
   },
   methods: {
@@ -33,7 +34,9 @@ export default {
       postService.get(this)
     },
     deletePost (target, postId) {
-      postService.destroy(target, postId, this)
+      let url = `/posts/${postId}`
+      let redirectUrl = '/'
+      postService.destroy(target, postId, url, redirectUrl, this)
     },
     getResults (page = 1) {
       authAxios.get('/posts?page=' + page)

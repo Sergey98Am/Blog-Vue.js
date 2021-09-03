@@ -70,7 +70,7 @@ function create (target, self) {
   })
 }
 
-function update (target, self) {
+function update (target, url, self) {
   self.$validator.validateAll().then((result) => {
     if (result) {
       // Loader
@@ -87,7 +87,7 @@ function update (target, self) {
       }
       formData.append('title', self.title)
       formData.append('description', self.description)
-      authAxios.post('/posts/' + self.id, formData).then(response => {
+      authAxios.post(url, formData).then(response => {
         // Loader
         loader.style.display = 'none'
         icon.style.display = 'inline-block'
@@ -119,18 +119,18 @@ function update (target, self) {
   })
 }
 
-function destroy (target, postId, self) {
+function destroy (target, postId, url, redirectUrl, self) {
   // Loader
   target.querySelector('.delete-loader').style.display = 'inline-block'
   target.querySelector('.icon').style.display = 'none'
   // End Loader
-  authAxios.delete('/posts/' + postId).then(response => {
+  authAxios.delete(url).then(response => {
     self.$store.dispatch('notificationsLastId')
     self.$store.dispatch('getUnreadNotificationsCount')
     self.$store.dispatch('postNotifications', {postId: postId})
     let onePost = self.$store.getters.get_one_post
     if (onePost) {
-      self.$router.push('/')
+      self.$router.push(redirectUrl)
     } else {
       let posts = self.posts
       let postsData = self.posts.data
@@ -148,9 +148,9 @@ function destroy (target, postId, self) {
   }).catch(error => error)
 }
 
-function allPosts (self) {
+function allPosts (self, url) {
   self.isLoading = true
-  authAxios.get('http://blog.loc/api/all-posts').then(response => {
+  authAxios.get(url).then(response => {
     self.isLoading = false
     self.posts = response.data.posts
   }).catch(() => {

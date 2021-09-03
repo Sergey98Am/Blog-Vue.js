@@ -2,7 +2,8 @@ import * as postService from '@/services/post.service'
 
 export default {
   props: [
-    'postOrPosts'
+    'postOrPosts',
+    'getResults'
   ],
   data () {
     return {
@@ -50,7 +51,8 @@ export default {
       return postService.validation()
     },
     updatePost (target) {
-      postService.update(target, this)
+      let url = `/admin/posts/${this.id}`
+      postService.update(target, url, this)
     },
     upload () {
       this.$refs['hidden-button'].click()

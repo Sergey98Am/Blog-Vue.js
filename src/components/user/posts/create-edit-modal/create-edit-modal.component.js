@@ -45,10 +45,6 @@ export default {
       this.description = ''
       this.imagePreview = ''
       this.$refs['hidden-button'].value = ''
-      let onePost = this.$store.getters.get_one_post
-      if (onePost) {
-        this.$store.dispatch('onePostIsFalse')
-      }
     },
 
     // Validation
@@ -59,7 +55,8 @@ export default {
       postService.create(target, this)
     },
     updatePost (target) {
-      postService.update(target, this)
+      let url = `/posts/${this.id}`
+      postService.update(target, url, this)
     },
     upload () {
       this.$refs['hidden-button'].click()

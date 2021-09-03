@@ -6,7 +6,7 @@ import * as PostService from '@/services/post.service'
 export default {
   data () {
     return {
-      postOrPosts: {
+      post: {
         id: '',
         image: '',
         title: '',
@@ -26,6 +26,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('onePostIsTrue')
     this.onePost()
   },
   methods: {
@@ -39,7 +40,9 @@ export default {
       this.$refs['show-posts'].newModal(post)
     },
     deletePost (target, id) {
-      PostService.destroy(target, id, this)
+      let url = `/admin/posts/${id}`
+      let redirectUrl = '/admin'
+      PostService.destroy(target, id, url, redirectUrl, this)
     },
     checkPost (target, post) {
       adminPostService.check(target, post)
