@@ -16,6 +16,7 @@ function getNotifications (self) {
 
 function getUnreadNotificationsCount (self) {
   self.$store.dispatch('getUnreadNotificationsCount')
+  showNotificationCountOnTab(self)
 }
 
 function echo (self) {

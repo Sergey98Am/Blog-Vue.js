@@ -1,10 +1,10 @@
 <template>
   <li class="nav-item dropdown">
-    <a class="nav-link px-2 dropdown-toggle" id="navbarDropdown" role="button"
+    <a class="nav-link px-2" id="navbarDropdown" role="button"
        data-toggle="dropdown" aria-haspopup="true" :aria-expanded="false">
      <span class="icon">
         <font-awesome-icon :icon="['fas', 'bell']"/>
-        <span>({{ count }})</span>
+       <span v-if="count" class="notification-badge">{{ count.length > 99 ? 99 + '+' : count }}</span>
      </span>
     </a>
     <div v-if="notifications.length" class="dropdown-menu dropdown-menu-right in-not-hidden" aria-labelledby="navbarDropdown">
@@ -16,7 +16,8 @@
               @click="notificationsMarkAsRead(notification.uuid, notification.read_at, notification.data.url)"
               v-for="notification in notifications"
               :key="notification.uuid" class="dropdown-item">
-        {{ notification.data.text }}
+        <span>{{ notification.data.text }}</span>
+        <span class="created_at"><timeago :datetime="notification.created_at" :auto-update="60"></timeago></span>
       </button>
       <button @click="loadMoreNotifications" class="dropdown-item text-center in-not-hidden">Load more data</button>
     </div>
@@ -24,3 +25,16 @@
 </template>
 
 <script src="./notifications.component.js"></script>
+<style>
+.notification-badge {
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: red;
+  top: 0;
+  right: -2px;
+  position: absolute;
+  font-size: 14px;
+}
+</style>
