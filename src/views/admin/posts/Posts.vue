@@ -12,7 +12,7 @@
             <div class="col-12">
               <h1 class="title"><i><b>Posts</b></i></h1>
             </div>
-            <div v-for="post in displayedPosts" :key="post.id" class="col-12 col-sm-6 col-xl-3">
+            <div v-for="post in posts.data" :key="post.id" class="col-12 col-sm-6 col-xl-3">
               <div class="card">
                 <img :src="'http://blog.loc/images/' + post.image" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -48,14 +48,11 @@
           </div>
         </div>
         <div class="col-12">
-          <paginate v-model="page" :page-count="pageCount" :page-range="3"
-                    :margin-pages="1" :prev-text="'Prev'" :next-text="'Next'"
-                    :container-class="'pagination'" :page-class="'page-item'"
-                    :hide-prev-next="true"></paginate>
+          <pagination :limit="2" :data="posts" @pagination-change-page="getResults"></pagination>
         </div>
       </div>
     </div>
-    <modal-posts :postOrPosts="postOrPosts" ref="modal-posts"></modal-posts>
+    <modal-posts :postOrPosts="posts" :getResults="getResults" ref="modal-posts"></modal-posts>
     <show-posts ref="show-posts"></show-posts>
   </div>
 </template>

@@ -20,7 +20,8 @@ export default {
       this.$refs['show-posts'].newModal(post)
     },
     getAllPosts () {
-      postService.allPosts(this)
+      let url = '/all-posts'
+      postService.allPosts(this, url)
     },
     saveLike (target, post) {
       postService.saveLike(target, post, this)

@@ -2,28 +2,21 @@ import ModalPosts from '@/components/admin/posts/create-edit-modal/CreateEditMod
 import ShowPosts from '@/components/admin/posts/show-modal/ShowModal.vue'
 import * as adminPostService from '@/services/admin/post.service'
 import * as postService from '@/services/post.service'
-import * as Pagination from '@/pagination'
+import authAxios from '../../../../config/authAxios'
 
 export default {
   data () {
     return {
       isLoading: false,
-      page: 1,
-      pageCount: 0,
-      pageSize: 4,
-      postOrPosts: []
+      posts: {}
     }
   },
   components: {
     'modal-posts': ModalPosts,
     'show-posts': ShowPosts
   },
-  computed: {
-    displayedPosts () {
-      return Pagination.paginate(this, this.postOrPosts)
-    }
-  },
   mounted () {
+    this.$store.dispatch('onePostIsFalse')
     this.getAllPosts()
   },
   methods: {
@@ -34,13 +27,22 @@ export default {
       this.$refs['show-posts'].newModal(post)
     },
     getAllPosts () {
-      adminPostService.allPosts(this)
+      let url = '/admin/posts'
+      postService.allPosts(this, url)
     },
     deletePost (target, postId) {
-      postService.destroy(target, postId, this)
+      let url = `/admin/posts/${postId}`
+      let redirectUrl = '/admin'
+      postService.destroy(target, postId, url, redirectUrl, this)
     },
     checkPost (target, post) {
       adminPostService.check(target, post)
+    },
+    getResults (page = 1) {
+      authAxios.get('/admin/posts?page=' + page)
+        .then(response => {
+          this.posts = response.data.posts
+        })
     }
   }
 }
