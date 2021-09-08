@@ -7,8 +7,8 @@
        <span v-if="count" class="notification-badge">{{ count.length > 99 ? 99 + '+' : count }}</span>
      </span>
     </a>
-    <div v-if="notifications.length" class="dropdown-menu dropdown-list dropdown-menu-right in-not-hidden" aria-labelledby="navbarDropdown">
-      <button @click="notificationsMarkAllAsRead" class="dropdown-item in-not-hidden">Mark all as
+    <div v-if="notifications.length" class="dropdown-menu dropdown-list dropdown-menu-right" aria-labelledby="navbarDropdown">
+      <button @click="notificationsMarkAllAsRead" class="dropdown-item is-not-hidden">Mark all as
         read
       </button>
       <button :to="notification.data.url"
@@ -19,7 +19,7 @@
         <span>{{ notification.data.text }}</span>
         <span class="created_at"><timeago :datetime="notification.created_at" :auto-update="60"></timeago></span>
       </button>
-      <button @click="loadMoreNotifications" class="dropdown-item text-center in-not-hidden">Load more data</button>
+      <button @click="loadMoreNotifications" class="dropdown-item text-center is-not-hidden">Load more data</button>
     </div>
   </li>
 </template>

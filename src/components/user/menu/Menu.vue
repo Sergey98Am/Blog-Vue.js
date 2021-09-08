@@ -15,7 +15,7 @@
             <router-link @click.native="isToggled = false" tag="button" class="dropdown-item" to="/profile">Profile</router-link>
             <button @click="LogoutRequest" class="dropdown-item">Logout</button>
           </div>
-          <div v-else class="dropdown-menu dropdown-menu-right">
+          <div v-else class="dropdown-menu dropdown-list dropdown-menu-right">
             <router-link @click.native="isToggled = false" tag="button" class="dropdown-item" to="/login">Login</router-link>
             <router-link @click.native="isToggled = false" tag="button" class="dropdown-item" to="/register">Register</router-link>
           </div>
