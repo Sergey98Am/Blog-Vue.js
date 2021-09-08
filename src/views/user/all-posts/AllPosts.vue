@@ -22,6 +22,11 @@
                       <font-awesome-icon :icon="['fas', 'eye']"/>
                     </button>
                   </div>
+                  <div class="comment">
+                    <button @click="goToComments(post.id)" class="btn btn-secondary">
+                      <font-awesome-icon :icon="['fas', 'comment-alt']"/>
+                    </button>
+                  </div>
                   <div v-if="$store.getters.get_loggedIn" class="like-system">
                     <button :style="post.liked_by_auth_user ? 'color: green' : 'color: red'" @click="saveLike($event.target, post)">
                       <span class="icon"><font-awesome-icon :icon="['fas', 'thumbs-up']"/></span>
@@ -45,6 +50,7 @@
       </div>
     </div>
     <show-modal ref="show-posts"></show-modal>
+    <comments ref="comments"></comments>
   </div>
 </template>
 

@@ -2,6 +2,7 @@ import CreateEditModal from '@/components/admin/posts/create-edit-modal/CreateEd
 import ShowModal from '@/components/admin/posts/show-modal/ShowModal.vue'
 import * as adminPostService from '@/services/admin/post.service'
 import * as PostService from '@/services/post.service'
+import Comments from '@/components/admin/posts/comments-modal/CommentsModal.vue'
 
 export default {
   data () {
@@ -18,7 +19,8 @@ export default {
   },
   components: {
     'create-edit-modal': CreateEditModal,
-    'show-modal': ShowModal
+    'show-modal': ShowModal,
+    'comments': Comments
   },
   watch: {
     '$route' () {
@@ -46,6 +48,10 @@ export default {
     },
     checkPost (target, post) {
       adminPostService.check(target, post)
+    },
+    // Comments
+    goToComments (postId) {
+      this.$refs.comments.commentModal(postId)
     }
   }
 }

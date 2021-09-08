@@ -3,6 +3,7 @@ import ShowModal from '@/components/user/posts/show-modal/ShowModal.vue'
 import ForceUpdate from '@/components/forceUpdate.vue'
 import * as postService from '@/services/post.service'
 import authAxios from '../../../../config/authAxios'
+import Comments from '@/components/user/posts/comments-modal/CommentsModal.vue'
 
 export default {
   data () {
@@ -14,7 +15,8 @@ export default {
   components: {
     'create-edit-modal': CreateEditModal,
     'show-modal': ShowModal,
-    'force-update': ForceUpdate
+    'force-update': ForceUpdate,
+    'comments': Comments
   },
   mounted () {
     this.$store.dispatch('onePostIsFalse')
@@ -43,6 +45,10 @@ export default {
         .then(response => {
           this.posts = response.data.posts
         })
+    },
+    // Comments
+    goToComments (postId) {
+      this.$refs.comments.commentModal(postId)
     }
   }
 }

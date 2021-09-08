@@ -36,6 +36,11 @@
                     </span>
                     </button>
                   </div>
+                  <div v-if="$can('comment_access')" class="comment">
+                    <button @click="goToComments(post.id)" class="btn btn-secondary">
+                      <font-awesome-icon :icon="['fas', 'comment-alt']"/>
+                    </button>
+                  </div>
                   <div v-if="$can('post_check')" class="form-check">
                     <input v-model="post.checked" @change="checkPost($event.target, post)" class="checked-input" type="checkbox" :id="'checked-id-' + post.id">
                     <label class="checked-label" :for="'checked-id-' + post.id">Checked</label>
@@ -54,6 +59,7 @@
     </div>
     <modal-posts :postOrPosts="posts" :getResults="getResults" ref="modal-posts"></modal-posts>
     <show-posts ref="show-posts"></show-posts>
+    <comments ref="comments"></comments>
   </div>
 </template>
 
