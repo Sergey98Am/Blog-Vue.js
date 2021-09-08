@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-<!--    <img src="../assets/images/home.png" alt="">-->
+    <img src="../assets/images/user-bg.png" alt="">
   </div>
 </template>
 
@@ -13,6 +13,7 @@
 }
 
 img {
+  object-fit: contain;
   width: 500px;
   height: 500px;
 }
