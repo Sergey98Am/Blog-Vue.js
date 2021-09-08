@@ -1,6 +1,7 @@
 import CreateEditModal from '@/components/user/posts/create-edit-modal/CreateEditModal.vue'
 import ShowModal from '@/components/user/posts/show-modal/ShowModal.vue'
 import * as PostService from '@/services/post.service'
+import Comments from '@/components/user/posts/comments-modal/CommentsModal.vue'
 
 export default {
   data () {
@@ -16,7 +17,8 @@ export default {
   },
   components: {
     'create-edit-modal': CreateEditModal,
-    'show-modal': ShowModal
+    'show-modal': ShowModal,
+    'comments': Comments
   },
   watch: {
     '$route' () {
@@ -42,6 +44,10 @@ export default {
       let url = `/posts/${id}`
       let redirectUrl = '/'
       PostService.destroy(target, id, url, redirectUrl, this)
+    },
+    // Comments
+    goToComments (postId) {
+      this.$refs.comments.commentModal(postId)
     }
   }
 }

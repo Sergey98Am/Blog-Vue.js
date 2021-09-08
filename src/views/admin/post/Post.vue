@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-6 offset-3">
           <div class="card">
+            <p v-if="$route.query.notify_type === 'user_add_comment'">notify</p>
             <img v-if="post.image" :src="'http://blog.loc/images/' + post.image" class="card-img-top"
                  alt="...">
             <div class="card-body">
@@ -27,6 +28,11 @@
                     </span>
                 </button>
               </div>
+              <div v-if="$can('comment_access')" class="comment">
+                <button @click="goToComments(post.id)" class="btn btn-secondary">
+                  <font-awesome-icon :icon="['fas', 'comment-alt']"/>
+                </button>
+              </div>
               <div v-if="$can('post_check')" class="form-check">
                 <input v-model="post.checked" @change="checkPost($event.target, post)"
                        class="checked-input" type="checkbox" :id="'checked-id-' + post.id">
@@ -42,6 +48,7 @@
     </div>
     <create-edit-modal :postOrPosts="post" ref="modal-posts"></create-edit-modal>
     <show-modal ref="show-posts"></show-modal>
+    <comments ref="comments"></comments>
   </div>
 </template>
 

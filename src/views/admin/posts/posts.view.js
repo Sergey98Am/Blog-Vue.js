@@ -3,6 +3,7 @@ import ShowPosts from '@/components/admin/posts/show-modal/ShowModal.vue'
 import * as adminPostService from '@/services/admin/post.service'
 import * as postService from '@/services/post.service'
 import authAxios from '../../../../config/authAxios'
+import Comments from '@/components/admin/posts/comments-modal/CommentsModal.vue'
 
 export default {
   data () {
@@ -13,7 +14,8 @@ export default {
   },
   components: {
     'modal-posts': ModalPosts,
-    'show-posts': ShowPosts
+    'show-posts': ShowPosts,
+    'comments': Comments
   },
   mounted () {
     this.$store.dispatch('onePostIsFalse')
@@ -43,6 +45,10 @@ export default {
         .then(response => {
           this.posts = response.data.posts
         })
+    },
+    // Comments
+    goToComments (postId) {
+      this.$refs.comments.commentModal(postId)
     }
   }
 }

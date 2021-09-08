@@ -42,6 +42,11 @@
                       </span>
                     </button>
                   </div>
+                  <div class="comment">
+                    <button @click="goToComments(post.id)" class="btn btn-secondary">
+                      <font-awesome-icon :icon="['fas', 'comment-alt']"/>
+                    </button>
+                  </div>
                   <p v-if="post.checked" class="check">
                 <span>
                   <font-awesome-icon :icon="['fas', 'check']"/>
@@ -67,6 +72,7 @@
     </div>
     <create-edit-modal :postOrPosts="posts" :getResults="getResults" ref="modal-posts"></create-edit-modal>
     <show-modal ref="show-posts"></show-modal>
+    <comments ref="comments"></comments>
   </div>
 </template>
 

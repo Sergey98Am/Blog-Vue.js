@@ -7,7 +7,7 @@
        <span v-if="count" class="notification-badge">{{ count.length > 99 ? 99 + '+' : count }}</span>
      </span>
     </a>
-    <div v-if="notifications.length" class="dropdown-menu dropdown-menu-right in-not-hidden" aria-labelledby="navbarDropdown">
+    <div v-if="notifications.length" class="dropdown-menu dropdown-list dropdown-menu-right in-not-hidden" aria-labelledby="navbarDropdown">
       <button @click="notificationsMarkAllAsRead" class="dropdown-item in-not-hidden">Mark all as
         read
       </button>

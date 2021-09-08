@@ -28,3 +28,7 @@ input.form-control:focus, textarea.form-control:focus  {
 {
   opacity: 0;
 }
+
+.show {
+  display: block !important;
+}

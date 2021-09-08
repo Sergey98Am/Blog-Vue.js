@@ -1,6 +1,7 @@
 import ShowModal from '@/components/user/posts/show-modal/ShowModal'
 import * as postService from '@/services/post.service'
 import axios from 'axios'
+import Comments from '@/components/user/posts/comments-modal/CommentsModal.vue'
 
 export default {
   data () {
@@ -10,7 +11,8 @@ export default {
     }
   },
   components: {
-    'show-modal': ShowModal
+    'show-modal': ShowModal,
+    'comments': Comments
   },
   mounted () {
     this.getAllPosts()
@@ -31,6 +33,10 @@ export default {
         .then(response => {
           this.posts = response.data.posts
         })
+    },
+    // Comments
+    goToComments (postId) {
+      this.$refs.comments.commentModal(postId)
     }
   }
 }
