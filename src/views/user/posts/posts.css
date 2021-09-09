@@ -24,3 +24,21 @@
   color: dimgray;
   font-size: 11px;
 }
+
+.comment {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .card .btn {
+    font-size: 11px !important;
+  }
+
+  .card-title {
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
+  }
+  .card-text {
+    font-size: 13px !important;
+  }
+}

@@ -2,9 +2,8 @@
   <div class="post">
     <div class="container">
       <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-12 col-md-6 offset-md-3">
           <div class="card">
-            <p v-if="$route.query.notify_type === 'user_add_comment'">notify</p>
             <img v-if="post.image" :src="'http://blog.loc/images/' + post.image" class="card-img-top"
                  alt="...">
             <div class="card-body">
@@ -68,5 +67,23 @@
 
 .checked {
   display: none;
+}
+
+.comment {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .card .btn {
+    font-size: 11px !important;
+  }
+
+  .card-title {
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
+  }
+  .card-text {
+    font-size: 13px !important;
+  }
 }
 </style>

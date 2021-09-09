@@ -19,7 +19,7 @@
         <span>{{ notification.data.text }}</span>
         <span class="created_at"><timeago :datetime="notification.created_at" :auto-update="60"></timeago></span>
       </button>
-      <button @click="loadMoreNotifications" class="dropdown-item text-center is-not-hidden">Load more data</button>
+      <button v-if="notifications && notifications.length >= 10" @click="loadMoreNotifications" class="dropdown-item text-center is-not-hidden">Load more data</button>
     </div>
   </li>
 </template>

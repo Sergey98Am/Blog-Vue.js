@@ -13,9 +13,14 @@ export default {
     commit('SET_renderNotifications', false)
   },
   getUnreadNotificationsCount ({commit}) {
-    authAxios.get('/unread-notifications-count').then(response => {
-      commit('SET_count', response.data.count)
-    }).catch(error => error)
+    return new Promise((resolve, reject) => {
+      authAxios.get('/unread-notifications-count').then(response => {
+        commit('SET_count', response.data.count)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
   },
   echo ({commit}, payload) {
     let notification = payload.notification
@@ -24,6 +29,7 @@ export default {
       read_at: null,
       data: {url: notification.url, text: notification.text},
       post_id: notification.post_id,
+      comment_id: notification.comment_id,
       created_at: Date.now()
     }
     commit('SET_notification', unread)
@@ -68,5 +74,9 @@ export default {
   postNotifications ({commit}, payload) {
     let postId = payload.postId
     commit('postNotifications', postId)
+  },
+  commentNotifications ({commit}, payload) {
+    let commentId = payload.commentId
+    commit('commentNotifications', commentId)
   }
 }

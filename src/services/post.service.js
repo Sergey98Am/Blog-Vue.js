@@ -1,4 +1,5 @@
 import authAxios from '../../config/authAxios'
+import * as settings from '../notificaiton-settings'
 
 function validation () {
   return {
@@ -126,7 +127,6 @@ function destroy (target, postId, url, redirectUrl, self) {
   // End Loader
   authAxios.delete(url).then(response => {
     self.$store.dispatch('notificationsLastId')
-    self.$store.dispatch('getUnreadNotificationsCount')
     self.$store.dispatch('postNotifications', {postId: postId})
     let onePost = self.$store.getters.get_one_post
     if (onePost) {
@@ -145,6 +145,9 @@ function destroy (target, postId, url, redirectUrl, self) {
         self.getResults(page)
       }
     }
+    self.$store.dispatch('getUnreadNotificationsCount').then(() => {
+      settings.showNotificationCountOnTab(self)
+    })
   }).catch(error => error)
 }
 

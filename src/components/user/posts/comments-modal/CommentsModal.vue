@@ -93,7 +93,7 @@
                         </div>
                       </div>
                       <div class="load-more-replies">
-                        <button @click="loadMoreReplies(comment)" class="btn btn-dark">Load More Replies</button>
+                        <button v-if="comment.limitedReplies.length >= 10" @click="loadMoreReplies(comment)" class="btn btn-dark">Load More Replies</button>
                       </div>
                     </div>
                     <div class="new-replies">
@@ -135,7 +135,7 @@
                   </div>
                 </div>
                 <div class="load-more-comments text-center">
-                  <button @click="loadMoreComments" class="btn btn-dark">Load More Comments</button>
+                  <button v-if="postComments.comments && postComments.comments.length >= 10" @click="loadMoreComments" class="btn btn-dark">Load More Comments</button>
                 </div>
               </div>
             </div>

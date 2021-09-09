@@ -1,4 +1,5 @@
 import authAxios from '../../config/authAxios'
+import * as settings from '../notificaiton-settings'
 
 function get (self, url) {
   authAxios.get(url).then(response => {
@@ -57,8 +58,10 @@ function update (self, comment, url) {
   }).catch(error => error)
 }
 
-function destroyComment (self, comment, url) {
+function destroyComment (self, commentParam, url) {
   authAxios.delete(url).then(response => {
+    self.$store.dispatch('notificationsLastId')
+    self.$store.dispatch('commentNotifications', {commentId: commentParam.id})
     let postComments = self.postComments.comments
     let comment
     for (comment in postComments) {
@@ -67,11 +70,16 @@ function destroyComment (self, comment, url) {
       }
       self.lastCommentId = postComments[comment].id
     }
+    self.$store.dispatch('getUnreadNotificationsCount').then(() => {
+      settings.showNotificationCountOnTab(self)
+    })
   }).catch(error => error)
 }
 
 function destroyReply (self, comment, replies) {
   authAxios.delete('/posts/' + self.postId + '/comments/' + comment.id).then(response => {
+    self.$store.dispatch('notificationsLastId')
+    self.$store.dispatch('getUnreadNotificationsCount')
     let reply
     for (reply in replies) {
       if (replies[reply].id === response.data.comment.id) {
@@ -79,11 +87,17 @@ function destroyReply (self, comment, replies) {
       }
       comment.lastReplyId = replies[reply].id
     }
+    self.$store.dispatch('getUnreadNotificationsCount').then(() => {
+      settings.showNotificationCountOnTab(self)
+    })
   }).catch(error => error)
 }
 
-function destroyReplyInNewReplies (self, replies, reply) {
-  authAxios.delete('/posts/' + self.postId + '/comments/' + reply.id).then(response => {
+function destroyReplyInNewReplies (self, replies, replyParam) {
+  authAxios.delete('/posts/' + self.postId + '/comments/' + replyParam.id).then(response => {
+    self.$store.dispatch('notificationsLastId')
+    self.$store.dispatch('getUnreadNotificationsCount')
+    self.$store.dispatch('commentNotifications', {commentId: replyParam.id})
     let reply
     for (reply in replies) {
       if (replies[reply].id === response.data.comment.id) {

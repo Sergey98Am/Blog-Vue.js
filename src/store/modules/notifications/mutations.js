@@ -48,7 +48,14 @@ export default {
   },
   postNotifications (state, postId) {
     state.notifications = state.notifications.filter((notification) => {
+      console.log(postId, notification.post_id)
       return postId !== notification.post_id
+    })
+  },
+  commentNotifications (state, commentId) {
+    state.notifications = state.notifications.filter((notification) => {
+      console.log(commentId, notification)
+      return commentId !== notification.comment_id
     })
   }
 }

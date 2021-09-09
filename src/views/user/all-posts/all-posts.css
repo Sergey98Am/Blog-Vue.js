@@ -23,3 +23,15 @@
 .comment {
   margin-top: 5px;
 }
+
+@media (max-width: 768px) {
+  .card .btn {
+    font-size: 11px !important;
+  }
+  .card-title {
+    font-size: 18px !important;
+  }
+  .card-text {
+    font-size: 15px !important;
+  }
+}

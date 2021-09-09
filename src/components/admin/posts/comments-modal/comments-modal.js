@@ -43,16 +43,13 @@ export default {
       let url = '/admin/posts/' + this.postId + '/comments'
       commentService.get(this, url)
     },
-    deleteComment (comment) {
-      let url = '/admin/posts/' + this.postId + '/comments/' + comment.id
-      commentService.destroyComment(this, comment, url)
+    deleteComment (commentParam) {
+      let url = '/admin/posts/' + this.postId + '/comments/' + commentParam.id
+      commentService.destroyComment(this, commentParam, url)
     },
     deleteReply (comment, limitedReplies) {
       commentService.destroyReply(this, comment, limitedReplies)
     },
-    // deleteReplyInNewReplies (newReplies, reply) {
-    //   commentService.destroyReplyInNewReplies(this, newReplies, reply)
-    // },
     loadMoreComments () {
       commentService.moreComments(this)
     },
